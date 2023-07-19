@@ -1,0 +1,22 @@
+.login
+{
+    min-height: 93vh;
+    display: flex;
+    align-items: center;
+
+}
+.logInBtn
+{
+    width: 8rem;
+    height: 3rem;
+    margin-top: 10px;
+    /*align-items: center;
+    position: ;*/
+    position: "absolute";
+    justify-content: "center";
+    align-items: "center";
+}
+.passwordBox
+{
+    margin-top: 10px;
+}

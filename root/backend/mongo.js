@@ -21,4 +21,11 @@ const logIn = async(req,res,next) => {
   console.log(user);
 
 };
+const getUser = async(req,res,next)=>
+{
+  let user;
+  user = "MARKO MARKOVIC";
+  res.json(user);
+}
 exports.logIn = logIn;
+exports.getUser = getUser;

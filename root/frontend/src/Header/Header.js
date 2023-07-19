@@ -5,12 +5,16 @@ import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import {Link} from 'react-router-dom'
+import './Header.css'
 
 const Header = () => {
   return (
     <Navbar bg ="primary" expand="lg" className="bg-body-tertiary">
       <Container>
-        <Navbar.Brand href="/">RentIT</Navbar.Brand>
+        <Navbar.Brand>
+          <Link to = "/"> RentIT </Link>
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav
@@ -21,7 +25,14 @@ const Header = () => {
             <Nav.Link href="#action1">Home</Nav.Link>
             <Nav.Link href="#action2">Contact</Nav.Link>
             <NavDropdown title="Vehicles" id="navbarScrollingDropdown">
-              <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
+
+
+              <NavDropdown.Item>
+      
+              </NavDropdown.Item>
+
+
+
               <NavDropdown.Item href="#action4">
                 Another action
               </NavDropdown.Item>
@@ -31,7 +42,7 @@ const Header = () => {
               </NavDropdown.Item>
             </NavDropdown>                 
           </Nav>          
-          <Nav className="position-absolute top-50 start-50 translate-middle">  
+          <Nav className="search-box">  
             <Form>
               <Form.Control
                 type="search"
@@ -40,10 +51,10 @@ const Header = () => {
                 />        
             </Form>
             </Nav> 
-            <Nav className="position-absolute bottom-0 start-100 me-auto">
-            <NavDropdown title="Nemanja" id="navbarScrollingDropdown">
-              <NavDropdown.Item href="#action3">
-                Action
+            <Nav className="profile-options">
+            <NavDropdown title="Nemanja Ranitovic" id="navbarScrollingDropdown">
+              <NavDropdown.Item>                
+                <Link to = "/login">Log In </Link>
               </NavDropdown.Item>
               <NavDropdown.Item href="#action4">
                 My rents

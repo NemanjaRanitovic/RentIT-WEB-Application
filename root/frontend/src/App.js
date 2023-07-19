@@ -1,17 +1,23 @@
 import './App.css';
 import Header from './Header/Header';
 import Footer from './Footer/Footer';
+import LogIn from './LogIn/LogIn';
+import {BrowserRouter, Route,Routes} from 'react-router-dom'
+import LandingPage  from './LandingPage/LandingPage';
 
-function App() {
+
+const App = () => {
   return (
-    <>
+    <BrowserRouter>
       <Header />
-        <main style={{minHeight : '95vh'}}>
-
-          
+        <main>
+        <Routes>
+          <Route path="/login" Component = {LogIn} exact/>
+          <Route path="/test" Component = {LandingPage} exact/>
+        </Routes>       
         </main>
       <Footer />
-    </>
+    </BrowserRouter>
   );
 }
 
