@@ -10,7 +10,7 @@ const Navbar = () => {
 	const[toggle, setToggle] = useState(false);
 
 	return (
-		<nav className='w-full flex py-6 
+		<nav className='w-full flex py-6 relative
 						justify-between items-center navbar'>
 			<a href="/">
 				<Link to = "/">

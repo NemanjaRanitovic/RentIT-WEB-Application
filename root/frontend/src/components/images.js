@@ -5,5 +5,6 @@ import golf from '../images/golf.png'
 import volvo from '../images/volvo.png'
 import alfa from '../images/alfa.png'
 import nissan from '../images/nissan.png'
+import toyota from '../images/toyota.png'
 
-export default [bmw, merc, audi, golf, volvo, alfa, nissan]
+export default [bmw, merc, audi, golf, volvo, alfa, nissan, toyota]

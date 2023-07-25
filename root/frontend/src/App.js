@@ -9,12 +9,13 @@ const App = () => {
   return (
 	<BrowserRouter>
 		<div className="bg-primary w-full overflow-hidden">
+			
 			<div className={`${styles.paddingX} ${styles.flexCenter}`}>
 				<div className={`${styles.boxWidth}`}>
 					<Navbar/>
 				</div>
 			</div>
-		
+
 			<main>
 				<Routes>
 				<Route path="/login" Component = {LogIn} exact/>
@@ -28,7 +29,7 @@ const App = () => {
 				</div>
 			</div>
 
-			<div className={`bg-secondary ${styles.paddingX} ${styles.flexStart}`}>
+			<div className={`bg-secondary ${styles.paddingX} ${styles.flexStart} relative`}>
 				<div className={`${styles.boxWidth}`}>
 					<Footer />
 				</div>
