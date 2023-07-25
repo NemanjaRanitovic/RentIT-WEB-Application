@@ -3,7 +3,11 @@ const bodyParser = require('body-parser');
 const mongoPractice = require('./mongo');
 const { MongoTimeoutError } = require('mongodb/lib/core');
 const { mongo } = require('mongoose');
+const connectToDb = require("./MongoDB/MongoDB")
+
 const app = express();
+connectToDb();
+
 
 app.use(bodyParser.json());
 

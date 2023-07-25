@@ -3,7 +3,7 @@ import { useState } from 'react'
 import logo from "../images/rentitLogo.png"
 import menu from "../images/menu.png"
 import close from "../images/close.png"
-
+import {Link} from "react-router-dom"
 
 const Navbar = () => {
 
@@ -12,9 +12,11 @@ const Navbar = () => {
 	return (
 		<nav className='w-full flex py-6 
 						justify-between items-center navbar'>
-			<a href='/'>
+			<a href="/">
+				<Link to = "/">
 				<img src={logo} alt="logo" 
 					className='w-[130px] h-[35px]' />
+				</Link>
 			</a>			
 			<ul className='list-none sm:flex hidden justify-end 
 							items-center flex-1'>
@@ -38,11 +40,13 @@ const Navbar = () => {
 								text-[16px] text-black mr-10'>
 					<a href='/'>Chart</a>
 				</li>
+				<Link to = "/login">
 				<li className='font-poppins
 								font-normal cursor-pointer
 								text-[16px] text-black'>
 					<a href='/login'>Login</a>
 				</li>
+				</Link>
 			</ul>
 
 			<div className='sm:hidden flex flex-1 
