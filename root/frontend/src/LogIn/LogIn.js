@@ -1,9 +1,4 @@
-import {Container} from "react-bootstrap"
 import React, { useEffect } from 'react'
-import {Row} from 'react-bootstrap'
-import { MDBInput } from 'mdb-react-ui-kit';
-import { MDBBtn } from 'mdb-react-ui-kit';
-import {Button} from "react-bootstrap";
 import "./LogIn.css"
 import axios from 'axios';
 
@@ -19,20 +14,13 @@ const LogIn = () => {
   },[])
 
   return (
-    <div className='login'>        
-        <Container className="inputFields">
-            <Container className="usernameBox">
-                <MDBInput placeholder='Username' id='Username' type='text' />
-            </Container>
-
-            <Container className="passwordBox">
-                <MDBInput placeholder='Password' id='Password' type='text' />
-            </Container>
-            
-            <Container className="logInBtn">
-                <Button>Log In</Button>
-            </Container>
-        </Container>
+    <div className='content'> 
+		<div className="login">
+			<h2>Login</h2>
+			<input id="Username" className="usernameInput" type={"text"} placeholder="Username"/>
+			<input id="Password" className="passwordInput" type={"password"} placeholder="Password"></input>
+			<button className="loginBtn" type="button">Log In</button>			
+		</div>
     </div>
   );
 };
