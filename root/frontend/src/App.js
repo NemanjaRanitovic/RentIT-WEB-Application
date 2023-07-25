@@ -17,17 +17,11 @@ const App = () => {
 		
 			<main>
 				<Routes>
-				<Route path="/login" Component = {LogIn} exact/>
-				<Route path="/test" Component = {HeroSection} exact/>
+					<Route path="/login" Component = {LogIn} exact/>
+					<Route path="/" Component = {HeroSection} exact/>
 				</Routes>       
 			</main>	
 		
-			<div className={`bg-primary ${styles.flexStart}`}>
-				<div className={`${styles.boxWidth}`}>
-					<HeroSection/>
-				</div>
-			</div>
-
 			<div className={`bg-secondary ${styles.paddingX} ${styles.flexStart}`}>
 				<div className={`${styles.boxWidth}`}>
 					<Footer />
