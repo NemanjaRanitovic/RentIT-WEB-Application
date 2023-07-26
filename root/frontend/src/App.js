@@ -2,7 +2,7 @@ import './App.css';
 import LogIn from './LogIn/LogIn';
 import {BrowserRouter, Route,Routes} from 'react-router-dom'
 import styles from "./style.js"
-import { Navbar, HeroSection, Footer} from './components';
+import { Navbar, HeroSection, Footer, Objects, Search} from './components';
 
 
 const App = () => {
@@ -29,9 +29,16 @@ const App = () => {
 				</div>
 			</div>
 
-			<div className={`bg-secondary ${styles.paddingX} ${styles.flexStart} relative`}>
+			<div className={`bg-primary ${styles.flexStart}`}>
 				<div className={`${styles.boxWidth}`}>
+					<Objects/>
+				</div>
+			</div>
+
+			<div className={`bg-secondary ${styles.paddingX} ${styles.flexStart}`}>
+				<div className={`${styles.boxWidth} flex`}>
 					<Footer />
+					<Search />
 				</div>
 			</div>
 		

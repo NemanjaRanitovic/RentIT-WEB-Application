@@ -4,7 +4,6 @@ import {motion} from 'framer-motion';
 import {useRef, useEffect, useState} from 'react';
 import images from './images';
 import percent from '../images/percent.png';
-import bg from '../images/heroBg.png';
 
 const HeroSection = () => {
 
@@ -28,8 +27,8 @@ const HeroSection = () => {
 					<div className='flex flex-row items-center py-[4px] px-6 bg-discount-gradient rounded-[10px] mb-10'>
 						<img src={percent} alt="discount" className='w-[24px] h-[24px] '/>
 						<p className={`${styles.paragraph} ml-2 text-white`}>
-							<span className='text-gradient'>20%</span> Discount for {" "}
-							<span className='text-gradient'>First</span> Registration
+							<span className='text-third'>20%</span> Discount for {" "}
+							<span className='text-third'>First</span> Registration
 						</p>
 					</div>
 				</div>
@@ -50,7 +49,7 @@ const HeroSection = () => {
 
 			<motion.div animate={{y:-20}}>
 				<motion.div ref={carousel} 
-							whileTap={{cursor:"grabbing"}} className='cursor-grab overflow-hidden background__image'>
+							whileTap={{cursor:"grabbing"}} className='cursor-grab overflow-hidden'>
 					<motion.div drag="x" dragConstraints={{right:0, left:-2000}}
 								initial={{ x: 0 }}
 								animate={{ x: -currentIndex * 1000 }}
