@@ -41,11 +41,10 @@ function Dropdown({ selected, setSelected }) {
 
     return (
         <div className="w-[200px] m-auto font-poppins relative">
-            <div
-                className="bg-[#eeeeee] shadow-[3px_3px_10px_6px_rgba(0,0,0,0.2)]
-                                    text-secondary items-center font-bold rounded-md
-                                    justify-between pt-[10px] pb-[10px]
-                                    pl-[15px] pr-[15px] cursor-pointer relative"
+            <div className="bg-white shadow-[3px_3px_10px_6px_rgba(0,0,0,0.2)]
+                            text-secondary items-center font-bold rounded-md
+                            justify-between pt-[10px] pb-[10px]
+                            pl-[15px] pr-[15px] cursor-pointer relative"
                 onClick={() => setIsActive(!isActive)}>
                     {selected || placeholder}
                     <motion.span className="fas fa-caret-down pt-[4px] right-0 mr-[15px] absolute" />
@@ -55,7 +54,8 @@ function Dropdown({ selected, setSelected }) {
                 {isActive && (
                 <motion.div
                     className="absolute top-full w-full left-0 rounded-b-md mt-[5px]
-                                bg-[#eeeeee] shadow-[3px_3px_10px_6px_rgba(0,0,0,0.2)]  font-normal text-secondary"
+                                bg-secondary shadow-[3px_3px_10px_6px_rgba(0,0,0,0.2)]
+                                font-normal text-primary"
                     variants={dropdownVariants}
                     initial="closed"
                     animate="open"

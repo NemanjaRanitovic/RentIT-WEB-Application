@@ -20,28 +20,28 @@ const Navbar = () => {
 			</a>			
 			<ul className='list-none sm:flex hidden justify-end 
 							items-center flex-1'>
-				<li className='font-poppins
+				<li className='font-poppins hover:text-third
 								font-normal cursor-pointer
 								text-[16px] text-black mr-10'>
 					<a href='/'>Home</a>
 				</li>
-				<li className='font-poppins
+				<li className='font-poppins hover:text-third
 								font-normal cursor-pointer
 								text-[16px] text-black mr-10'>
-					<a href='/'>Objects</a>
+					<a href='/objects'>Objects</a>
 				</li>
-				<li className='font-poppins
+				<li className='font-poppins hover:text-third
 								font-normal cursor-pointer
 								text-[16px] text-black mr-10'>
 					<a href='/'>Contact</a>
 				</li>
-				<li className='font-poppins
+				<li className='font-poppins hover:text-third
 								font-normal cursor-pointer
 								text-[16px] text-black mr-10'>
 					<a href='/'>Chart</a>
 				</li>
 				<Link to = "/login">
-				<li className='font-poppins
+				<li className='font-poppins hover:text-third
 								font-normal cursor-pointer
 								text-[16px] text-black'>
 					<a href='/login'>Login</a>
