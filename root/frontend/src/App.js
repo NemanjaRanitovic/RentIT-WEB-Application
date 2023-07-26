@@ -2,7 +2,7 @@ import './App.css';
 import LogIn from './LogIn/LogIn';
 import {BrowserRouter, Route,Routes} from 'react-router-dom'
 import styles from "./style.js"
-import { Navbar, HeroSection, Footer} from './components';
+import { Navbar, HeroSection, Footer, Register} from './components';
 
 
 const App = () => {
@@ -19,10 +19,11 @@ const App = () => {
 				<Routes>
 					<Route path="/login" Component = {LogIn} exact/>
 					<Route path="/" Component = {HeroSection} exact/>
+					<Route path="/register" Component={Register} exact/>
 				</Routes>       
 			</main>	
 		
-			<div className={`bg-secondary ${styles.paddingX} ${styles.flexStart}`}>
+			<div className={`bg-secondary relative ${styles.paddingX} ${styles.flexStart}`}>
 				<div className={`${styles.boxWidth}`}>
 					<Footer />
 				</div>

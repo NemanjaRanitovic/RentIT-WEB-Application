@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import "./LogIn.css"
 import axios from 'axios';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link} from "react-router-dom";
+
 
 const LogIn = () => {
   const navigate = useNavigate();
@@ -50,7 +51,17 @@ const LogIn = () => {
 			<button className="loginBtn" 
               type="button"
               onClick={handleClick}
-      >Log In</button>			
+      >Log In</button>
+      <p className='text-center'>
+        <a>
+        Dont have an account? 
+        </a>
+        <Link to="/register">
+          <a href="/register" className='hover:text-[#1d36b5]'>
+            Register for free.
+          </a>
+        </Link>
+      </p>			
 		</div>
     </div>
   );
