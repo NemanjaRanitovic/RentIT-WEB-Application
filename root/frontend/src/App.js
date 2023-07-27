@@ -2,19 +2,20 @@ import './App.css';
 import LogIn from './LogIn/LogIn';
 import {BrowserRouter, Route,Routes} from 'react-router-dom'
 import styles from "./style.js"
-import { Navbar, HeroSection, Footer, Register} from './components';
+import { Navbar, HeroSection, Footer, Objects, Search, Register} from './components';
 
 
 const App = () => {
   return (
 	<BrowserRouter>
 		<div className="bg-primary w-full overflow-hidden">
+			
 			<div className={`${styles.paddingX} ${styles.flexCenter}`}>
 				<div className={`${styles.boxWidth}`}>
 					<Navbar/>
 				</div>
 			</div>
-		
+
 			<main>
 				<Routes>
 					<Route path="/login" Component = {LogIn} exact/>
@@ -24,6 +25,18 @@ const App = () => {
 			</main>	
 		
 			<div className={`bg-secondary relative ${styles.paddingX} ${styles.flexStart}`}>
+				<div className={`bg-primary ${styles.flexStart}`}>
+					<div className={`${styles.boxWidth}`}>
+						<HeroSection/>
+					</div>
+				</div>
+			</div>
+
+			<div className={`bg-primary ${styles.flexCenter}`}>
+				<Objects/>
+			</div>
+
+			<div className={`bg-secondary ${styles.paddingX} ${styles.flexStart}`}>
 				<div className={`${styles.boxWidth}`}>
 					<Footer />
 				</div>
