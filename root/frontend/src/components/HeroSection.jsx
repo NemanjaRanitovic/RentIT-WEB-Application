@@ -9,7 +9,7 @@ const HeroSection = () => {
 
 	const [currentIndex, setCurrentIndex] = useState(0);
 	const carousel = useRef();
-  
+	
 	const nextSlide = () => {
 	  setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
 	};
@@ -46,7 +46,7 @@ const HeroSection = () => {
 					</div>	
 				</div>
 			</div>
-
+		
 			<motion.div animate={{y:-20}}>
 				<motion.div ref={carousel} 
 							whileTap={{cursor:"grabbing"}} className='cursor-grab overflow-hidden'>

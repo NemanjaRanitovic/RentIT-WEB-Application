@@ -4,16 +4,16 @@ import axios from 'axios';
 import { useNavigate, Link} from "react-router-dom";
 
 
-const LogIn = () => {
+const LogIn = (props) => {
   const navigate = useNavigate();
-
+  const {authenticate} = props;
   const [Username, setUsername] = useState("")
   const [Password, setPassword] = useState("")
   const [error, setError] = useState(false)
   const [loading, setLoading] = useState(false)
 
-  const handleClick = async (event)=> {
-    event.preventDefault();
+  const handleClick = async ()=> {
+    
     try{
       const config = {
         headers:{
@@ -21,9 +21,9 @@ const LogIn = () => {
         }
       }
       setLoading(true);
-        const { data} = await axios.post('/users/login',{Username,Password},config);
-        localStorage.setItem('userInfo',JSON.stringify(data));
-        console.log(data);
+        const {data} = await axios.post('/users/login',{Username,Password},config);
+        localStorage.setItem('userInfo',JSON.stringify(data));  
+        authenticate();
         navigate("/");
       setLoading(false);
     }catch(error){
