@@ -8,12 +8,12 @@ const Card = () => {
         <div className='flex flex-row justify-evenly mt-[20px] cursor-pointer relative'>
             {objects.map(object =>(
                 <div key={object.id} className='bg-white m-1 flex flex-col max-w-lg shadow-2xl
-                                                max-h-[40rem] rounded-md relative mx-[0.5rem]
+                                                max-h-[40rem] rounded-md relative mx-[0.5rem] md:w-[300px]
                                                 hover:translate-y-[-0.5rem] ease-in-out duration-300
                                                 hover:shadow-[3px_3px_10px_6px_rgba(0,0,0,0.2)]'>
                     <img src={object.image}
-                        alt='product-img' className='m-2.5 rounded-md w-[140px]
-                                                    md:w-[300px]'/>
+                        alt='product-img' className='m-2.5 rounded-md w-[100px]
+                                                    md:w-[280px]'/>
                     <button className='absolute m-[1.5rem] right-0'>
                     <FaShoppingCart className=' text-[25px] hover:text-third text-secondary
                                                 cursor-pointer ease-in-out duration-150'/>
