@@ -76,36 +76,7 @@ const HeroSection = () => {
 				</div>
 			</div>
 							
-			<div className={`bg-primary ${styles.flexCenter} ${styles.paddingX}`}>
-				<div className={`${styles.boxWidth}`}>
-					<Objects/>
-				</div>
 			</div>
-
-		
-		
-			<motion.div animate={{y:-20}}>
-				<motion.div ref={carousel} 
-							whileTap={{cursor:"grabbing"}} className='cursor-grab overflow-hidden'>
-					<motion.div drag="x" dragConstraints={{right:0, left:-2000}}
-								initial={{ x: 0 }}
-								animate={{ x: -currentIndex * 1000 }}
-								transition={{duration: 0.7, type: "spring" }}
-								className='flex relative w-[100%] h-[100%] z-[5]'>
-						{images.map(image =>{
-							return(
-								<motion.div className='w-[800px] h-[400px] z-[5] relative
-														p-[40px] mr-[140px] ml-[60px] pointer-events-none' key={image}>
-									<img src={image} alt=""/>
-								</motion.div>
-							);
-						})}
-					</motion.div>
-				</motion.div>
-			</motion.div>	
-			
-						
-    	</div>
 		
   	)
 }
