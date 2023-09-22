@@ -20,7 +20,7 @@ const registerUser = async(req,res) => {
         res.status(201).json({
             _id:    user._id,
             Name:   user.Name,
-            Lastname:   user.name,
+            Lastname:   user.Lastname,
             Sex:    user.Sex,
             Email:  user.Email,
             BirthDate:  user.Email,
@@ -38,11 +38,12 @@ const logIn = asyncHandler(async(req,res)=>{
     if(user && (await user.matchPassword(Password))){
         res.json({
             _id:    user._id,
+            Username: user.Username,
             Name:   user.Name,
-            Lastname:   user.name,
+            Lastname:   user.Lastname,
             Sex:    user.Sex,
             Email:  user.Email,
-            BirthDate:  user.Email,
+            BirthDate:  user.BirthDate,
             token:generateToken(user._id),
         })
         console.log(user);

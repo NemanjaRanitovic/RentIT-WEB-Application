@@ -1,15 +1,37 @@
-import React from 'react'
+import React, { createContext, useContext, useEffect} from 'react'
 import { useState } from 'react'
 import logo from "../images/rentitLogo.png"
-import menu from "../images/menu.png"
-import close from "../images/close.png"
 import {Link} from "react-router-dom"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { FaCaretDown } from "react-icons/fa";
+import Dropdown from './Dropdown'
 
-const Navbar = () => {
-
+const Navbar = (props) => {
+	const {loggedUserName , logUser,logOutUser} = props;
 	const[toggle, setToggle] = useState(false);
+	const[render, setrender] = useState(0);
+	const [ime, setime] = useState(loggedUserName);	
+	useEffect(() => {
 
+		if(!loggedUserName){
+			
+		
+		setime("Log in");
+		
+		}else{
+			setime(loggedUserName);						
+		}
+		
+	  }); //render
+	
+	function clearLocalStorage () {
+		localStorage.clear();
+		logOutUser();
+		setime("Log in");  		    
+	}
+	
 	return (
+		
 		<nav className='w-full flex py-6 relative
 						justify-between items-center navbar'>
 			<a href="/">
@@ -23,8 +45,10 @@ const Navbar = () => {
 				<Link to = "/">
 					<li className='font-poppins hover:text-third
 									font-normal cursor-pointer
-									text-[16px] text-black mr-10'>
-						<a href='/'>Home</a>
+									text-[16px] text-black mr-10'
+									>
+						<a href='/' onClick={clearLocalStorage}>Home</a>
+					
 					</li>
 				</Link>
 				<li className='font-poppins hover:text-third
@@ -42,58 +66,34 @@ const Navbar = () => {
 								text-[16px] text-black mr-10'>
 					<a href='/'>Chart</a>
 				</li>
-				<Link to = "/login">
-				<li className='font-poppins hover:text-third
-								font-normal cursor-pointer
-								text-[16px] text-black'>
-					<a href='/login'>Login</a>
-				</li>
-				</Link>
-			</ul>
-
-			<div className='sm:hidden flex flex-1 
-							justify-end items-center'>
-				<img src={toggle ? close : menu}
-						alt="menu" className='w-[28px] h-[28px]
-												object-contain'
-						onClick={() => setToggle((prev) => !(prev))}/>
-				<div className={`${toggle ? 'flex' : 'hidden'} p-6 bg-black-gradient
-								absolute top-20 right-0 mx-4 my-2 min-w-[140px]
-								rounded-xl sidebar`}>
-					<ul className='list-none flex flex-col justify-end 
-									items-center flex-1'>
-						<li className='font-poppins hover:text-third
-										font-normal cursor-pointer
-										text-[16px] text-white mb-10'>
-							<a href='/'>Home</a>
-						</li>
-						<li className='font-poppins hover:text-third
-										font-normal cursor-pointer
-										text-[16px] text-white mb-10'>
-							<a href='/'>Objects</a>
-						</li>
-						<li className='font-poppins hover:text-third
-										font-normal cursor-pointer
-										text-[16px] text-white mb-10'>
-							<a href='/'>Contact</a>
-						</li>
-						<li className='font-poppins hover:text-third
-										font-normal cursor-pointer
-										text-[16px] text-white mb-10'>
-							<a href='/'>Chart</a>
-						</li>
-						<li className='font-poppins hover:text-third
-										font-normal cursor-pointer
-										text-[16px] text-white'>
-							<a href='/login'>Login</a>
-						</li>
-					</ul>
-
-				</div>
-
-			</div>
+				<li>
+				{
+					ime === "Log in" ?
+					<li className='font-poppins hover:text-third
+							font-normal cursor-pointer
+							text-[16px] text-black'>
+						<Link to = "/login">
+						{ime} 
+						</Link>						
+					</li>	
+					
+					:
+					<li className='font-poppins hover:text-third
+							font-normal cursor-pointer
+							text-[16px] text-black'>
+						<Link to = "/profile">
+						{ime} 
+						</Link>						
+					</li>
+					
+         			
+				}
+				</li>									
+			</ul>			
 		</nav>
+		
   	)
 }
 
-export default Navbar
+
+export default Navbar;
