@@ -4,10 +4,20 @@ import {BrowserRouter, Route,Routes} from 'react-router-dom'
 import styles from "./style.js"
 import { Navbar, HeroSection, Footer, Objects, Search, Register} from './components';
 import { useEffect, useState } from 'react';
+import Profile from './components/Profile';
+
 
 
 const App = () => {
-   const [loggedUserName, setLoggedUserName] = useState("Log in")
+   
+   const [loggedUserName, setLoggedUserName] = useState(()=>{
+		/*if(JSON.parse(localStorage.getItem('userInfo')).Name){
+			return JSON.parse(localStorage.getItem('userInfo')).Name;
+		}else{
+			return "Log in";
+		}
+		*/
+   });
 
 	const userAuthentication = () => {
 		setLoggedUserName(JSON.parse(localStorage.getItem('userInfo')).Name);
@@ -31,6 +41,7 @@ const App = () => {
 					<Route path="/login" Component = {()=><LogIn authenticate = {userAuthentication}/>}  exact/>
 					<Route path="/" Component = {HeroSection} exact/>
 					<Route path="/register" Component={Register} exact/>
+					<Route path="/profile" Component={Profile} exact/>
 				</Routes>       
 			</main>	
 		
