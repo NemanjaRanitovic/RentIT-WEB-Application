@@ -26,8 +26,8 @@ const Register = () => {
             }
           }
           setLoading(true);
-            const { data} = await axios.post('/users/register',{Name,Lastname,Sex,Email,Username,Password,BirthDate},config); //user routes, user controllers
-            navigate("/");
+            const { data} = await axios.post('/users/register',{Name,Lastname,Sex,Email,Username,Password,BirthDate},config); //user routes, user controllers OVDE DODATI LOKIKU U BEKENDU DA SE 
+            navigate("/");                                                                                                    //MENJAJU PODACI A NE DA JE REGISTRACIJA OD 0 
           setLoading(false);
         }catch(error){
           setError(error.response.data.message);

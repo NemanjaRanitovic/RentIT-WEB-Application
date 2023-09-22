@@ -5,7 +5,7 @@ const generateToken = require('../util/generateToken');
 const registerUser = async(req,res) => {
     const {Name,Lastname,Sex,Email,Username,Password,BirthDate} = req.body;
 
-    const userExists = await User.findOne({Email});
+    const userExists = await User.findOne({Username});
 
     if(userExists){
         res.status(400);
@@ -43,6 +43,8 @@ const logIn = asyncHandler(async(req,res)=>{
             Lastname:   user.Lastname,
             Sex:    user.Sex,
             Email:  user.Email,
+            IsAdmin: user.isAdmin,
+            IsManager: user.isManager,
             BirthDate:  user.BirthDate,
             token:generateToken(user._id),
         })

@@ -5,6 +5,7 @@ import styles from "./style.js"
 import { Navbar, HeroSection, Footer, Objects, Search, Register} from './components';
 import { useEffect, useState } from 'react';
 import Profile from './components/Profile';
+import EditProfile from './components/EditProfile'
 
 
 
@@ -42,13 +43,10 @@ const App = () => {
 					<Route path="/" Component = {HeroSection} exact/>
 					<Route path="/register" Component={Register} exact/>
 					<Route path="/profile" Component={Profile} exact/>
+					<Route path="/EditProfile" Component={EditProfile} exact />
 				</Routes>       
 			</main>	
 		
-			<div className={`bg-primary ${styles.flexCenter}`}>
-				<Objects/>
-			</div>
-
 			<div className={`bg-secondary ${styles.paddingX} ${styles.flexStart}`}>
 				<div className={`${styles.boxWidth}`}>
 					<Footer />

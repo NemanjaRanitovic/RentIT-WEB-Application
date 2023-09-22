@@ -3,11 +3,13 @@ import styles from '../style'
 import dayjs from "dayjs"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGear } from '@fortawesome/free-solid-svg-icons'
+import {Link} from "react-router-dom"
+import Tooltip from '@mui/material/Tooltip'
 
 const Profile = () => {
   const User = JSON.parse(localStorage.getItem('userInfo')); 
   const UserBirthDay = dayjs(User.Date).format("MM/DD/YYYY");
-  console.log(User);
+  //console.log(User);
   return (
     <div>
       <div className={`${styles.paddingX} 
@@ -60,10 +62,31 @@ const Profile = () => {
                           `'>
             Birth date: {UserBirthDay}                                
           </div> 
+          <div className='font-poppins 
+                          font-normal                     
+                          text-[20px] 
+                          text-black mr-10
+                          p-[10px]
+                          `'>
+            {
+              User.IsAdmin === "true"?
+              "Profile type: Admin"
+              :
+              User.IsManager === "true"?
+              "Profile type: Manager"
+              :
+              "Profile type: User" //ovde treba dodati jos jedan ===? kasnije da se proveri kakvog tipa je kupac (Golden,silver, itd...)
+            }
+            
+          </div>
           <div className='absolute right-0 top-0 m-2 h-[50px] w-[50px]'>
+            <Tooltip title = "Edit profile">
+            <Link to ="/EditProfile">
             <button className='h-[50px] w-[50px]  text-primary'>
               <FontAwesomeIcon className="text-secondary" icon={faGear} size="" />
             </button>
+            </Link>
+            </Tooltip>
           </div>
         </div>
         
