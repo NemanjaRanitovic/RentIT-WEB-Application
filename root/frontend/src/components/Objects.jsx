@@ -3,6 +3,8 @@ import Dropdown from './Dropdown'
 import Search from './Search';
 import { useState } from 'react';
 import styles from '../style';
+import Card from './Card';
+import Fade from 'react-reveal/Fade';
 
 const Objects = () => {
 
@@ -24,7 +26,12 @@ const Objects = () => {
 
                 </div>
                 <div className='Cards'>
-
+                    <Fade bottom distance='20%'>
+                        <Card/>
+                    </Fade>
+                    <Fade bottom distance='20%'>
+                        <Card/>
+                    </Fade>
                 </div>
             </div>
 

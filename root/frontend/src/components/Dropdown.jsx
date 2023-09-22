@@ -53,9 +53,9 @@ function Dropdown({ selected, setSelected }) {
             <AnimatePresence>
                 {isActive && (
                 <motion.div
-                    className="absolute top-full w-full left-0 rounded-b-md mt-[5px]
+                    className=" absolute top-full w-full left-0 rounded-b-md mt-[5px]
                                 bg-secondary shadow-[3px_3px_10px_6px_rgba(0,0,0,0.2)]
-                                font-normal text-primary"
+                                font-normal text-primary z-[1]"
                     variants={dropdownVariants}
                     initial="closed"
                     animate="open"

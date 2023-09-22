@@ -15,8 +15,8 @@ const Search = () => {
 								text-[20px] focus:outline-none'
 					value={input} 
 					onChange={(i) => setInput(i.target.value)}/>
-			<button className='w-[20px] items-center'>
-				<FaSearch className='w-[20px] h-[20px] text-secondary hover:text-third'/>
+			<button className='w-[20px] items-center '>
+				<FaSearch className='text-[20px] hover:text-[23px] text-secondary hover:text-third ease-in-out duration-150'/>
 			</button>
 		</div>
   	)

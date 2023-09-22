@@ -12,6 +12,10 @@ import dropbox from "../images/dropbox.png";
 import send from "../images/Send.svg";
 import shield from "../images/Shield.svg";
 import star from "../images/Star.svg";
+import Object1 from "../images/Objects/Object1.png"
+import Object2 from "../images/Objects/Object2.png"
+import Object3 from "../images/Objects/Object3.png"
+import Object4 from "../images/Objects/Object4.jpg"
 
 export const navLinks = [
   {
@@ -206,5 +210,37 @@ export const clients = [
   {
     id: "client-4",
     logo: dropbox,
+  },
+];
+
+export const objects = [
+  {
+    id: "1",
+    name: "Object 1",
+    image: Object1,
+    location: "Location 1",
+    rating: 4.3,
+
+  },
+  {
+    id: "2",
+    name: "Object 2",
+    image: Object2,
+    location: "Location 2",
+    rating: 4.0,
+  },
+  {
+    id: "3",
+    name: "Object 3",
+    image: Object3,
+    location: "Location 3",
+    rating: 5.0,
+  },
+  {
+    id: "4",
+    name: "Object 4",
+    image: Object4,
+    location: "Location 4",
+    rating: 3.9,
   },
 ];

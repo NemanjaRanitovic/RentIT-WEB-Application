@@ -22,19 +22,7 @@ const App = () => {
 					<Route path="/" Component = {HeroSection} exact/>
 					<Route path="/register" Component={Register} exact/>
 				</Routes>       
-			</main>	
-		
-			<div className={`bg-secondary relative ${styles.paddingX} ${styles.flexStart}`}>
-				<div className={`bg-primary ${styles.flexStart}`}>
-					<div className={`${styles.boxWidth}`}>
-						<HeroSection/>
-					</div>
-				</div>
-			</div>
-
-			<div className={`bg-primary ${styles.flexCenter}`}>
-				<Objects/>
-			</div>
+			</main>
 
 			<div className={`bg-secondary ${styles.paddingX} ${styles.flexStart}`}>
 				<div className={`${styles.boxWidth}`}>
