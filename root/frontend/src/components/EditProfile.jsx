@@ -7,39 +7,33 @@ import { useState } from 'react'
 import { useNavigate, Link} from "react-router-dom";
 import Register from './Register'
 import axios from 'axios';
+
 const EditProfile = () => {
   const User = JSON.parse(localStorage.getItem('userInfo')); 
   const UserBirthDay = dayjs(User.Date).format("MM/DD/YYYY");
   const navigate = useNavigate()
   const [error, setError] = useState(false)
-  const [Username, setUsername] = useState(User.Username)
+  const Username = User.Username
+  const [NewUsername, setNewUsername] = useState(null)
   const [Name, setName] = useState(User.Name)
   const [Lastname, setLastname] = useState(User.Lastname)
   const [Email, setEmail] = useState(User.Email)
   const [BirthDate, setBirthDate] = useState(UserBirthDay)
-  const [Sex, setSex] = useState("Male")
-  const [Password, setPassword] = useState("TAMALAJEKOKETA")
-  const [loading, setLoading] = useState(false)
-
-  const Register = async (event)=> {
-    event.preventDefault();
+  
+  const editProfile = async (event)=> {
+   
     try{
       const config = {
         headers:{
           "Content-type":"application/json"
         }
       }
-      setLoading(true);
-        const {data} = await axios.post('/users/register',{Name,Lastname,Sex,Email,Username,Password,BirthDate},config); //user routes, user controllers
-        navigate("/");
-      setLoading(false);
+      const {data} = await axios.put('/users/editProfile',{Name,Lastname,Email,Username,NewUsername,BirthDate},config); //user routes, user controllers           
     }catch(error){
       setError(error.response.data.message);
     }
+    
   }
-
-
-
 
   return (
     <div>
@@ -64,7 +58,7 @@ const EditProfile = () => {
                 label={Username}
                 defaultValue={Username}
                 size = "small"
-                onChange={(U)=>setUsername(U.target.value)}
+                onChange={(U)=>setNewUsername(U.target.value)}
                 />                                                 
           </div> 
           <div className='font-poppins 
@@ -140,12 +134,14 @@ const EditProfile = () => {
             }
             
           </div>
+          <Link to ="/">
           <Button variant="contained" color="success" onClick={
-           Register
-          }
-          >
+           editProfile                     
+          }                    
+          >          
             Submit
           </Button>
+          </Link>
         </div>
       </div>
     </div>

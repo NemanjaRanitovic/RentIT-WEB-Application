@@ -1,6 +1,8 @@
 const asyncHandler = require('express-async-handler');
 const User = require('../models/user');
 const generateToken = require('../util/generateToken');
+const MongoClient = require('mongodb').MongoClient;
+const url = 'mongodb+srv://nemanjaranit:e9NGQzxtp00tfLef@cluster0.60gcb2c.mongodb.net/?retryWrites=true&w=majority';
 
 const registerUser = async(req,res) => {
     const {Name,Lastname,Sex,Email,Username,Password,BirthDate} = req.body;
@@ -32,6 +34,19 @@ const registerUser = async(req,res) => {
     }
 }
 
+const editProfile = async(req,res)=>{
+    const client = new MongoClient(url);
+    await client.connect();
+    const db = client.db()
+    const {Name,Lastname,Email,Username,NewUsername,BirthDate} = req.body;
+    const userExists = await User.findOne({Username})
+  
+    if({NewUsername}){
+        db.collection('users').updateOne({Username: Username},{$set:{Username:NewUsername}});    
+    }
+    
+}
+
 const logIn = asyncHandler(async(req,res)=>{
     const {Username,Password} = req.body;
     const user = await User.findOne({Username});
@@ -54,4 +69,4 @@ const logIn = asyncHandler(async(req,res)=>{
         throw new Error("Invalid log in data");
     }
 });
-module.exports = {registerUser, logIn};
+module.exports = {registerUser,editProfile, logIn};
