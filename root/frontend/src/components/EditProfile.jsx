@@ -19,7 +19,7 @@ const EditProfile = () => {
   const [Lastname, setLastname] = useState(User.Lastname)
   const [Email, setEmail] = useState(User.Email)
   const [BirthDate, setBirthDate] = useState(UserBirthDay)
-  
+  const [editProfileNotiffication, seteditProfileNotiffication] = useState("");
   const editProfile = async (event)=> {
    
     try{
@@ -34,6 +34,31 @@ const EditProfile = () => {
     }
     
   }
+  const OnProfileUpdate=()=>{
+    seteditProfileNotiffication("Updates will be displayed after loging in again.");
+  };
+
+  const UsernameUpdate=(param)=>{
+    OnProfileUpdate();
+    setNewUsername(param);
+  }
+  const NameUpdate=(param)=>{
+    OnProfileUpdate();
+    setName(param);
+  }
+  const LastnameUpdate=(param)=>{
+    OnProfileUpdate();
+    setLastname(param);
+  }
+  const EmailUpdate=(param)=>{
+    OnProfileUpdate();
+    setEmail(param);
+  }
+  const BirthDateUpdate=(param)=>{
+    OnProfileUpdate();
+    setBirthDate(param);
+  }
+
 
   return (
     <div>
@@ -58,7 +83,7 @@ const EditProfile = () => {
                 label={Username}
                 defaultValue={Username}
                 size = "small"
-                onChange={(U)=>setNewUsername(U.target.value)}
+                onChange={(U)=>UsernameUpdate(U.target.value)}
                 />                                                 
           </div> 
           <div className='font-poppins 
@@ -72,7 +97,7 @@ const EditProfile = () => {
                 label={Name}
                 defaultValue={Name}
                 size = "small"
-                onChange={(N)=>setName(N.target.value)}
+                onChange={(N)=>NameUpdate(N.target.value)}                
                 />  
           </div> 
           <div className='font-poppins 
@@ -86,7 +111,7 @@ const EditProfile = () => {
                 label={Lastname}
                 defaultValue={Lastname}
                 size = "small"
-                onChange={(LN)=>setLastname(LN.target.value)}
+                onChange={(LN)=>LastnameUpdate(LN.target.value)}
                 />                                   
           </div> 
           <div className='font-poppins 
@@ -100,7 +125,7 @@ const EditProfile = () => {
                 label={Email}
                 defaultValue={Email}
                 size = "small"
-                onChange={(E)=>setEmail(E.target.value)}
+                onChange={(E)=>EmailUpdate(E.target.value)}
                 />                                   
           </div> 
           <div className='font-poppins 
@@ -114,7 +139,7 @@ const EditProfile = () => {
                 label={BirthDate}
                 defaultValue={BirthDate}
                 size = "small"
-                onChange={(D)=>setBirthDate(D.target.value)}
+                onChange={(D)=>BirthDateUpdate(D.target.value)}
                 />                                  
           </div> 
           <div className='font-poppins 
@@ -142,7 +167,8 @@ const EditProfile = () => {
             Submit
           </Button>
           </Link>
-        </div>
+          {editProfileNotiffication}
+        </div>        
       </div>
     </div>
   )

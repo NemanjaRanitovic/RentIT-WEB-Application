@@ -39,12 +39,23 @@ const editProfile = async(req,res)=>{
     await client.connect();
     const db = client.db()
     const {Name,Lastname,Email,Username,NewUsername,BirthDate} = req.body;
-    const userExists = await User.findOne({Username})
-  
-    if({NewUsername}){
+    console.log(NewUsername);
+        
+    if(Name){
+        db.collection('users').updateOne({Username: Username},{$set:{Name:Name}});    
+    }
+    if(Lastname){
+        db.collection('users').updateOne({Username: Username},{$set:{Lastname:Lastname}});    
+    }
+    if(Email){
+        db.collection('users').updateOne({Username: Username},{$set:{Email:Email}});    
+    }
+    if(BirthDate){
+        db.collection('users').updateOne({Username: Username},{$set:{BirthDate:BirthDate}});    
+    }
+    if(NewUsername){
         db.collection('users').updateOne({Username: Username},{$set:{Username:NewUsername}});    
     }
-    
 }
 
 const logIn = asyncHandler(async(req,res)=>{
