@@ -62,10 +62,10 @@ const getAllNames = asyncHandler(async(req, res)=>{
     const client = new MongoClient(url);
     await client.connect();
     const db = client.db()
-    const names = await db.collection('users').find({}, { projection: { Name: 1,_id:0 } }).toArray();
-    console.log(names);
-    res.json(names);
-    return names;
+    const users = await db.collection('users').find({}, { projection: { Name: 1,Lastname:1,Username:1,_id:0} }).toArray();
+    console.log(users);
+    res.json(users);
+    return users;
 });
 
 const logIn = asyncHandler(async(req,res)=>{

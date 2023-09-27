@@ -8,39 +8,46 @@ import Tooltip from '@mui/material/Tooltip'
 import axios from 'axios'
 import { useState } from 'react'
 import { useEffect } from 'react'
+import { DataGrid } from '@mui/x-data-grid';
+import Box from '@mui/material/Box';
 
 const Profile = () => {
   const User = JSON.parse(localStorage.getItem('userInfo')); 
   const UserBirthDay = dayjs(User.Date).format("MM/DD/YYYY");
-  const [error, setError] = useState(false);
-  const [Imena,setImena]= useState([]);
-
-  const fetchImena = async() =>{
+  const [Users,setUsers]= useState([]);
+  const columns = [       
+    {
+      field: 'Name',
+      headerName: 'First name',
+      width: 200,
+      editable: true,
+    },
+    {
+      field: 'Lastname',
+      headerName: 'Last name',
+      width: 200,
+      editable: true,
+    },
+    {
+      field: 'Username',
+      headerName: 'Username',      
+      width: 200,
+      editable: true,
+    },    
+  ];
+  const fetchUsers = async() =>{
     //return await axios.get('/users/getAllNames');
     const {data}= await axios.get('/users/getAllNames');
-    setImena(data);
-    console.log({data});
+    setUsers(data);
   }
-
+  const getRowId = (row)=>{
+    return row.Username;
+  }
   useEffect(() => {    
-    console.log(Imena);
-    fetchImena();
+    console.log(Users);
+    fetchUsers();
   },[])
   
-
-  const getAllNames = async()=> {
-    const config = {
-    headers:{
-        "Content-type":"application/json"
-    }
-    }
-    const data = await axios.get('/users/getAllNames',config); //user routes, user controllers           
-    setImena(data);
-    console.log(Imena);         
-      
-  }
-
-  //console.log(User);
   return (
     <div className='bg-[#e6e1e1] h-[800px] w-[1920px]'>
       <div className={`${styles.paddingX} 
@@ -122,7 +129,7 @@ const Profile = () => {
         </div>
         
       </div>
-      <div className='absolute left-1/3 top-36 bg-[#e6e1e1] h-[400px] w-[500px] font-poppins 
+      <div className='absolute left-1/3 top-36 bg-[#e6e1e1] h-[400px] w-[700px] font-poppins 
                           font-normal                     
                           text-[20px] 
                           text-black
@@ -132,8 +139,17 @@ const Profile = () => {
       {
         User.IsAdmin === "true"? 
         <div>
-          Users preview
-          {Imena.map(Ime=><div>{Ime.Name}</div>)}            
+          Users preview          
+          <div>
+          <Box sx={{ height: 380, width: '100%' }}>
+            <DataGrid
+              rows = {Users}
+              columns={columns}
+              getRowId={getRowId}
+            />
+            </Box>
+          </div>
+                      
         </div>
         :
         User.IsManager === "true"?
