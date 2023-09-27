@@ -22,9 +22,9 @@ const Profile = () => {
     console.log({data});
   }
 
-  useEffect(() => {
-    fetchImena();
+  useEffect(() => {    
     console.log(Imena);
+    fetchImena();
   },[])
   
 
@@ -133,7 +133,7 @@ const Profile = () => {
         User.IsAdmin === "true"? 
         <div>
           Users preview
-                          
+          {Imena.map(Ime=><div>{Ime.Name}</div>)}            
         </div>
         :
         User.IsManager === "true"?

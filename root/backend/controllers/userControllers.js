@@ -62,7 +62,7 @@ const getAllNames = asyncHandler(async(req, res)=>{
     const client = new MongoClient(url);
     await client.connect();
     const db = client.db()
-    const names = await db.collection('users').find({}, { projection: { Name: 1 } }).toArray();
+    const names = await db.collection('users').find({}, { projection: { Name: 1,_id:0 } }).toArray();
     console.log(names);
     res.json(names);
     return names;
