@@ -11,7 +11,7 @@ const registerUser = async(req,res) => {
 
     if(userExists){
         res.status(400);
-        throw new Error("User already exists");
+        throw new Error("User already exists"); 
     }
 
     const user = await User.create({
@@ -58,6 +58,16 @@ const editProfile = async(req,res)=>{
     }
 }
 
+const getAllNames = asyncHandler(async(req, res)=>{
+    const client = new MongoClient(url);
+    await client.connect();
+    const db = client.db()
+    const names = await db.collection('users').find({}, { projection: { Name: 1 } }).toArray();
+    console.log(names);
+    res.json(names);
+    return names;
+});
+
 const logIn = asyncHandler(async(req,res)=>{
     const {Username,Password} = req.body;
     const user = await User.findOne({Username});
@@ -80,4 +90,4 @@ const logIn = asyncHandler(async(req,res)=>{
         throw new Error("Invalid log in data");
     }
 });
-module.exports = {registerUser,editProfile, logIn};
+module.exports = {registerUser,editProfile, logIn,getAllNames};
