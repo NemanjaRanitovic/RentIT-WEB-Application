@@ -1,5 +1,4 @@
 import './App.css';
-import LogIn from './LogIn/LogIn';
 import {BrowserRouter, Route,Routes} from 'react-router-dom'
 import styles from "./style.js"
 import { Navbar, HeroSection, Footer, Objects, Search, Register} from './components';
@@ -8,6 +7,8 @@ import Profile from './components/Profile';
 import EditProfile from './components/EditProfile'
 
 
+import LoginPage from './pages/LoginPage'
+import RegisterPage from './pages/RegisterPage'
 
 const App = () => {
    
@@ -39,9 +40,9 @@ const App = () => {
 
 			<main>
 				<Routes>
-					<Route path="/login" Component = {()=><LogIn authenticate = {userAuthentication}/>}  exact/>
+					<Route path="/login" Component = {()=><LoginPage authenticate = {userAuthentication}/>}  exact/>
 					<Route path="/" Component = {HeroSection} exact/>
-					<Route path="/register" Component={Register} exact/>
+					<Route path="/register" Component={RegisterPage} exact/>
 					<Route path="/profile" Component={Profile} exact/>
 					<Route path="/EditProfile" Component={EditProfile} exact />
 				</Routes>       
