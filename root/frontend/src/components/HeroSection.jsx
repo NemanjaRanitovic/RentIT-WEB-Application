@@ -76,8 +76,11 @@ const HeroSection = () => {
 				</div>
 			</div>
 							
+			<div className={`bg-primary ${styles.flexCenter}`}>
+				<Objects/>
 			</div>
-		
+
+		</div>
   	)
 }
 
