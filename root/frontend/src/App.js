@@ -5,8 +5,7 @@ import { Navbar, HeroSection, Footer, Objects, Search, Register} from './compone
 import { useEffect, useState } from 'react';
 import Profile from './components/Profile';
 import EditProfile from './components/EditProfile'
-
-
+import CreateRentObject from './components/CreateRentObject'
 import LoginPage from './pages/LoginPage'
 import RegisterPage from './pages/RegisterPage'
 
@@ -45,6 +44,7 @@ const App = () => {
 					<Route path="/register" Component={RegisterPage} exact/>
 					<Route path="/profile" Component={Profile} exact/>
 					<Route path="/EditProfile" Component={EditProfile} exact />
+					<Route path="/CreateRentObject" Component={CreateRentObject} exact/>
 				</Routes>       
 			</main>	
 		

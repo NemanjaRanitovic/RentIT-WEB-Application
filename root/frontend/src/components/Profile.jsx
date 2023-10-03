@@ -10,6 +10,8 @@ import { useState } from 'react'
 import { useEffect } from 'react'
 import { DataGrid } from '@mui/x-data-grid';
 import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+
 
 const Profile = () => {
   const User = JSON.parse(localStorage.getItem('userInfo')); 
@@ -49,17 +51,9 @@ const Profile = () => {
   },[])
   
   return (
-    <div className='bg-[#e6e1e1] h-[800px] w-[1920px]'>
-      <div className={`${styles.paddingX} 
-                      font-poppins 
-                      font-normal                     
-                      text-[36px] 
-                      text-black mr-10`}>
-        {User.Name} {User.Lastname}
-      </div>
-
+    <div className='bg-[#e6e1e1] h-[800px] w-[1920px]'>    
       <div className={`${styles.paddingX}`}>
-        <div className=' bg-[#e6e1e1] h-[400px] w-[500px] top-2 rounded-md relative mb-10'  style={{border: '1px solid black'}}>
+        <div className=' bg-[#e6e1e1] h-[400px] w-[500px] top-16 rounded-md relative mb-10'  style={{border: '1px solid black'}}>
           <div className='font-poppins 
                           font-normal                     
                           text-[20px] 
@@ -158,6 +152,24 @@ const Profile = () => {
         "Profile type: User" //ovde treba dodati jos jedan ===? kasnije da se proveri kakvog tipa je kupac (Golden,silver, itd...)
       }
       </div>
+      <div className=' absolute bg-[#e6e1e1] right-36 top-36 h-[400px] w-[300px] rounded-md font-poppins text-center'
+           style={{border: '1px solid black',
+                   display: 'flex',
+                   justifyContent: 'center'}}>
+        What do you want to do today?
+        <div className = 'top-16 translate-middle absolute'
+             style = {{display:'flex', 
+                       alignItems: 'center',
+                       justifyContent: 'center'}}>
+          <Link to ="/CreateRentObject">
+            <Button variant="contained">
+              Add rent object
+            </Button>
+          </Link>
+        </div>        
+      </div>
+
+
     </div>
   )
 }
