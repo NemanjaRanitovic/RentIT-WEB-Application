@@ -1,6 +1,12 @@
 import React, { useState } from 'react'
 import { useNavigate, Link} from "react-router-dom";
 import axios from 'axios';
+import {
+	interaction, layer, custom, control, //name spaces
+	Interactions, Overlays, Controls,     //group
+	Map, Layers, Overlay, Util    //objects
+  } from "react-openlayers";
+
 
 
 const CreateRentObject = () => {
@@ -13,8 +19,7 @@ const CreateRentObject = () => {
 	const [BirthDate, setBirthDate] = useState("")
 	const [Sex, setSex] = useState("")
 	const [error, setError] = useState(false)
-	const [loading, setLoading] = useState(false)
-
+	const [loading, setLoading] = useState(false)	
 
 	const CreateRentObject = async (event)=> {
 		event.preventDefault();
@@ -103,7 +108,28 @@ const CreateRentObject = () => {
 							Register
 						</button>
 					</div>
-				</div>
+				</div>				
+			</div>
+			<div className='h-[300px] w-[300px]'>
+				<Map view={{center:[0,0],zoom:2}}>
+				<Layers>
+						<layer.Tile/>
+
+					</Layers>
+					<Controls attribution={false} zoom={true}>
+						<control.Rotate />
+						<control.ScaleLine />
+						<control.FullScreen />
+						<control.OverviewMap />
+						<control.ZoomSlider />
+						<control.ZoomToExtent />
+						<control.Zoom />
+					</Controls>
+					<Interactions>
+					<interaction.Select/>
+					<interaction.Draw type='Point' />
+					</Interactions>
+				</Map>
 			</div>
 		</>
 	)
