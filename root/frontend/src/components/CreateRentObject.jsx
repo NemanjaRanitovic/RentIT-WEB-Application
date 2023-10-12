@@ -1,12 +1,19 @@
 import React, { useState } from 'react'
 import { useNavigate, Link} from "react-router-dom";
 import axios from 'axios';
-import {
-	interaction, layer, custom, control, //name spaces
-	Interactions, Overlays, Controls,     //group
-	Map, Layers, Overlay, Util    //objects
-  } from "react-openlayers";
-
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import 'leaflet/dist/leaflet.css';
+import L from 'leaflet'
+import iconMarker from 'leaflet/dist/images/marker-icon.png'
+import iconRetina from 'leaflet/dist/images/marker-icon-2x.png'
+import iconShadow from 'leaflet/dist/images/marker-shadow.png'
+const icon = L.icon({ 
+    iconRetinaUrl:iconRetina, 
+    iconUrl: iconMarker, 
+    shadowUrl: iconShadow, 
+	iconSize: [25,41], 
+	iconAnchor: [12,41]
+});
 
 
 const CreateRentObject = () => {
@@ -20,7 +27,6 @@ const CreateRentObject = () => {
 	const [Sex, setSex] = useState("")
 	const [error, setError] = useState(false)
 	const [loading, setLoading] = useState(false)	
-
 	const CreateRentObject = async (event)=> {
 		event.preventDefault();
 		try{
@@ -36,10 +42,11 @@ const CreateRentObject = () => {
 		}catch(error){
 			setError(error.response.data.message);
 		}
-	}
+	}	
     //Promeniti polja, skontati lokaciju.
 	return (
 		<>
+		
 			<div className='w-[850px] h-[750px] bg-white justify-center shadow-2xl relative
 							items-center m-auto my-[50px] rounded-[20px] overflow-hidden'>
 				<div className='flex flex-col h-full'>
@@ -110,27 +117,19 @@ const CreateRentObject = () => {
 					</div>
 				</div>				
 			</div>
-			<div className='h-[300px] w-[300px]'>
-				<Map view={{center:[0,0],zoom:2}}>
-				<Layers>
-						<layer.Tile/>
-
-					</Layers>
-					<Controls attribution={false} zoom={true}>
-						<control.Rotate />
-						<control.ScaleLine />
-						<control.FullScreen />
-						<control.OverviewMap />
-						<control.ZoomSlider />
-						<control.ZoomToExtent />
-						<control.Zoom />
-					</Controls>
-					<Interactions>
-					<interaction.Select/>
-					<interaction.Draw type='Point' />
-					</Interactions>
-				</Map>
-			</div>
+			<div className='w-[400px] h-[400px] absolute top-36 left-12'>
+			<MapContainer   className='w-[350px] h-[350px]' center={[45.2396, 19.8227]} zoom={13} scrollWheelZoom={false}>
+				<TileLayer
+					attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+					url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+				/>
+				<Marker position={[45.2396, 19.8227]} icon={icon} >
+					<Popup>
+					A pretty CSS3 popup. <br /> Jaja
+					</Popup>
+				</Marker>
+			</MapContainer>
+		</div>
 		</>
 	)
 }
