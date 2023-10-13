@@ -34,6 +34,9 @@ const registerUser = async(req,res) => {
     }
 }
 
+
+
+
 const editProfile = async(req,res)=>{
     const client = new MongoClient(url);
     await client.connect();
@@ -68,6 +71,16 @@ const getAllNames = asyncHandler(async(req, res)=>{
     return users;
 });
 
+const getAllManagers = asyncHandler(async(req,res)=>{
+    const client = new MongoClient(url);
+    await client.connect();
+    const db = client.db()
+    const users = await db.collection('users').find({isManager:"true"}, { projection: { Username:1,_id:0} }).toArray();    
+    res.json(users);
+    return users;
+
+});
+
 const logIn = asyncHandler(async(req,res)=>{
     const {Username,Password} = req.body;
     const user = await User.findOne({Username});
@@ -90,4 +103,4 @@ const logIn = asyncHandler(async(req,res)=>{
         throw new Error("Invalid log in data");
     }
 });
-module.exports = {registerUser,editProfile, logIn,getAllNames};
+module.exports = {registerUser,editProfile, logIn,getAllNames,getAllManagers};

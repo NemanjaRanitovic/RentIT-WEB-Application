@@ -24,6 +24,7 @@
     "framer-motion": "^10.13.1",
     "google-map-react": "^2.2.1",
     "leaflet": "^1.9.4",
+    "leaflet-control-geocoder": "^2.4.0",
     "mdb-react-ui-kit": "^6.1.0",
     "mongoose": "^7.4.1",
     "ol": "^4.6.5",

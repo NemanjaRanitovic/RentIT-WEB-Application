@@ -7,19 +7,24 @@ const rentACarObjectSchema = mongoose.Schema(
             type: String,
             required: true,
         },
+        
         Vehicles:[
             {
                 type: mongoose.Schema.Types.ObjectId,
                 ref: "Vehicle"
             }
         ],
+        Manager:{
+            type:String,
+            required:true
+        },
         Location:{
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "Location"
+            type: String,
+            required:true
         },
         WorkingHours:{
-            type: String,
-            required: true,
+            type: String,            
+            default:"8-14"
         },
         Status:{
             type: String,
@@ -28,7 +33,7 @@ const rentACarObjectSchema = mongoose.Schema(
         },
         Logo:{
             type: String,
-            required: true
+            
         },
         AverageRate:{
             type: Number

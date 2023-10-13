@@ -7,6 +7,7 @@ const connectToDb = require("./MongoDB/MongoDB");
 const userRoutes = require("./routes/userRoutes");
 const locationRoutes = require("./routes/locationRoutes");
 const {notFound, errorHandler} = require("./middlewares/errorMiddleware");
+const  newRentACarObjectRoutes  = require('./routes/rentACarObjectRoutes');
 
 const app = express();
 connectToDb();
@@ -17,6 +18,7 @@ app.use(express.json());
 
 app.use('/users', userRoutes);
 app.use('/locations', locationRoutes);
+app.use('/rentObjects',newRentACarObjectRoutes);
 app.use(notFound);
 app.use(errorHandler);
 

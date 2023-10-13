@@ -1,12 +1,18 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate, Link} from "react-router-dom";
 import axios from 'axios';
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker, Popup, useMapEvent } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet'
+import LCG from 'leaflet-control-geocoder'
 import iconMarker from 'leaflet/dist/images/marker-icon.png'
 import iconRetina from 'leaflet/dist/images/marker-icon-2x.png'
 import iconShadow from 'leaflet/dist/images/marker-shadow.png'
+import InputLabel from '@mui/material/InputLabel';
+import FormControl from '@mui/material/FormControl';
+import NativeSelect from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
+
 const icon = L.icon({ 
     iconRetinaUrl:iconRetina, 
     iconUrl: iconMarker, 
@@ -18,17 +24,75 @@ const icon = L.icon({
 
 const CreateRentObject = () => {
 	const navigate = useNavigate()
-	const [Username, setUsername] = useState("")
-	const [Password, setPassword] = useState("")
-	const [Email, setEmail] = useState("")
+	const [Manager, setManagerUsername] = useState("")
 	const [Name, setName] = useState("")
-	const [Lastname, setLastName] = useState("")
-	const [BirthDate, setBirthDate] = useState("")
-	const [Sex, setSex] = useState("")
+	const [Latitude, setLatitude] = useState(45.2396)
+	const [Longitude, setLongitude] = useState(19.8227)
+	const [FullAddress, setFullAddress] = useState("")
+	const [Street, setStreetName] = useState("")
+	const [Number,setStreetNumber] = useState("")
+	const [City, setCityName] = useState("")
+	const [PostalCode, setPostalCode] = useState("")
+	const [Managers, setManagers] = useState([])
 	const [error, setError] = useState(false)
 	const [loading, setLoading] = useState(false)	
-	const CreateRentObject = async (event)=> {
+	const geocoder = L.Control.Geocoder.nominatim();
+
+	useEffect(() => {
+		GetAllManagers();
+	}, [])
+
+	const handleSelectChange = (event) => {
+		setManagerUsername(event.target.value);				
+	}
+
+	const CreateRentACarObject = async (event) => {
 		event.preventDefault();
+        try{
+          const config = {
+            headers:{
+              "Content-type":"application/json"
+            }
+          }
+          setLoading(true);
+            const {data} = await axios.post('/locations/newLocation',{Street,Number,City,PostalCode,Latitude,Longitude,},config); //prvo kreiranje lokacije   
+			//Ovde izmedju izvuci id od napravljene lokacije RADNO VREME ME MRZI SADA TO CEMO NEKAD			
+			const Location = data._id;
+			const {objectData} = await axios.post('/rentObjects/newRentACarObject',{Name,Location,Manager})                                                                                                        //MENJAJU PODACI A NE DA JE REGISTRACIJA OD 0 
+          setLoading(false);
+        }catch(error){
+          setError(error.response.data.message);
+        }
+	}
+
+	const MapClick = () => {
+
+		const map = useMapEvent({
+			click(e){
+				const{lat,lng} = e.latlng;
+				setLatitude(lat);
+				setLongitude(lng);
+				let marker;
+				geocoder.reverse(e.latlng, map.options.crs.scale(map.getZoom()), results => {
+					var r = results[0];
+					console.log(r);
+					if(r.properties.address.city){
+						setCityName(r.properties.address.city);
+					}else{
+						setCityName(r.properties.address.city_district);
+					}
+					setStreetName(r.properties.address.road);
+					setPostalCode(r.properties.address.postcode);
+					setStreetNumber(r.properties.address.house_number);
+					setFullAddress(Street+" "+Number+" "+City+" "+PostalCode);					
+				})
+			},
+		});
+		return null;	
+	};
+
+	const GetAllManagers = async (event)=> {
+		
 		try{
 			const config = {
 				headers:{
@@ -36,101 +100,107 @@ const CreateRentObject = () => {
 				}
 			}
 			setLoading(true);
-			const { data} = await axios.post('/users/register',{Name,Lastname,Sex,Email,Username,Password,BirthDate},config); //user routes, user controllers OVO MENJATI ZA RENT OBJEKTE
-			navigate("/");                                                                                                     //Dodati logiku na back
+			const { data} = await axios.get('/users/getAllManagers',config); 
+			setManagers(data);					                                                                                                   
 			setLoading(false);
 		}catch(error){
 			setError(error.response.data.message);
 		}
 	}	
-    //Promeniti polja, skontati lokaciju.
+
 	return (
-		<>
-		
-			<div className='w-[850px] h-[750px] bg-white justify-center shadow-2xl relative
-							items-center m-auto my-[50px] rounded-[20px] overflow-hidden'>
-				<div className='flex flex-col h-full'>
-					<div className='h-[600px] absolute bg-blue-gradient w-[160%]
-									rounded-[50%]  flex flex-col top-[-360px] left-[-400px]'>
-						<h1 className='text-[36px] font-poppins text-primary 
-										mt-[420px] z-10 ml-[450px] font-semibold'>Create</h1>
-						<h1 className='text-[36px] font-poppins text-primary 
-										z-10 ml-[450px] font-semibold leading-[25px]'>Rent object</h1>										
-					</div>
-				</div>
-				<div className='flex flex-col'>
-					<div className='h-[60%] absolute flex flex-row top-[300px]'>
-						<div className='flex flex-col'>
-							<input className='bg-primary text-[#000000] h-[40px] font-poppins pl-[10px]
-											w-[130%] border-[0px] rounded-[10px] mt-[10px] ml-[50px]'
-									placeholder='Name'
-									value={Name}
-									type='text'
-									onChange={(N)=>setName(N.target.value)}/>
-							<input className='bg-primary text-[#000000] h-[40px] font-poppins pl-[10px]
-											w-[130%] border-[0px] rounded-[10px] mt-[30px] ml-[50px]'
-									placeholder='Last name'
-									value={Lastname}
-									type='text'
-									onChange={(LN)=>setLastName(LN.target.value)}/>
-							<input className='bg-primary text-[#000000] h-[40px] font-poppins pl-[10px]
-											w-[130%] border-[0px] rounded-[10px] mt-[30px] ml-[50px]'
-									type='date'
-									value={BirthDate}
-									onChange={(D)=>setBirthDate(D.target.value)}/>
-							<input className='bg-primary text-[#000000] h-[40px] font-poppins pl-[10px]
-											w-[130%] border-[0px] rounded-[10px] mt-[30px] ml-[50px]'
-									placeholder='Gender'
-									value={Sex}
-									type='email'
-									onChange={(S)=>setSex(S.target.value)}/>
+
+			<div className='h-[900px] flex'>
+				<div className='w-[850px] h-[750px] bg-white shadow-2xl relative
+								items-center m-auto my-[50px] rounded-[20px] overflow-hidden'>
+					<div className='flex flex-col h-full'>
+						<div className='h-[600px] absolute bg-blue-gradient w-[160%]
+										rounded-[50%]  flex flex-col top-[-360px] left-[-400px]'>
+							<h1 className='text-[36px] font-poppins text-primary 
+											mt-[420px] z-10 ml-[450px] font-semibold'>Create</h1>
+							<h1 className='text-[36px] font-poppins text-primary 
+											z-10 ml-[450px] font-semibold leading-[25px]'>Rent object</h1>										
 						</div>
-						<div className='flex flex-col ml-[150px]'>
-							<input className='bg-primary text-[#000000] h-[40px] font-poppins pl-[10px]
+					</div>
+					<div className='flex flex-col'>
+						<div className='h-[60%] absolute flex flex-row top-[300px]'>
+							<div className='flex flex-col'>
+								<input className='bg-primary text-[#000000] h-[40px] font-poppins pl-[10px]
 												w-[130%] border-[0px] rounded-[10px] mt-[10px] ml-[50px]'
-									placeholder='Username'
-									value={Username}
-									type='text'
-									onChange={(U)=>setUsername(U.target.value)}/>
-							<input className='bg-primary text-[#000000] h-[40px] font-poppins pl-[10px]
+										placeholder='Name'
+										value={Name}
+										type='text'
+										onChange={(N)=>setName(N.target.value)}/>
+								<input className='bg-primary text-[#000000] h-[40px] font-poppins pl-[10px]
 												w-[130%] border-[0px] rounded-[10px] mt-[30px] ml-[50px]'
-									placeholder='Password'
-									value={Password}
-									type='password'
-									onChange={(P)=>setPassword(P.target.value)}/>
-							<input className='bg-primary text-[#000000] h-[40px] font-poppins pl-[10px]
+										placeholder='Last name'
+										value={Latitude}
+										type='float'
+										onChange={(LN)=>setLatitude(LN.target.value)}/>
+								<input className='bg-primary text-[#000000] h-[40px] font-poppins pl-[10px]
 												w-[130%] border-[0px] rounded-[10px] mt-[30px] ml-[50px]'
-									placeholder='E-mail'
-									value={Email}
-									type='email'
-									onChange={(E)=>setEmail(E.target.value)}/>
+										type='float'
+										value={Longitude}
+										onChange={(D)=>setLongitude(D.target.value)}/>
+								<input className='bg-primary text-[#000000] h-[40px] font-poppins pl-[10px]
+												w-[130%] border-[0px] rounded-[10px] mt-[30px] ml-[50px]'
+										placeholder='Address'
+										value={FullAddress}	
+										contentEditable={false}								
+										onChange={(S)=>setFullAddress(S.target.value)}/>
+							</div>
+
+
+
+							<div className='flex flex-col ml-[150px]'>
+								<FormControl className='bg-primary text-[#000000] h-[40px] top-[10px] w-[150px] font-poppins'>
+									<InputLabel className='h-[40px] w-[150px] mt-[-10px] ml-[20px] border-[0px]' variant="standard" htmlFor="uncontrolled-native">
+										Manager
+									</InputLabel>
+									<NativeSelect className='h-[40px] w-[150px] border-[0px]'												 
+												 onChange={handleSelectChange}>										
+										{Managers.map((manager)=>(
+											<MenuItem value={manager.Username}>
+												{manager.Username}												
+											</MenuItem>
+										))}										
+									</NativeSelect>
+								</FormControl>																
+							</div>
+
 						</div>
-					</div>
-					<div className='absolute top-[650px] right-[0] justify-center items-center mr-[115px]'>
-						<button className="h-[40px] font-poppins duration-150 cursor-pointer hover:bg-[#037f85]
-											w-[130%] border-[0px] rounded-[10px] mt-[30px] mr-[150px]
-											text-primary ease-in-out rounded-[10px] bg-third text-[20px]" 
-								onClick={CreateRentObject}
-								type="button" >
-							Register
-						</button>
-					</div>
-				</div>				
+						<div className='absolute top-[650px] right-[0] justify-center items-center mr-[115px]'>
+							<button className="h-[40px] font-poppins duration-150 cursor-pointer hover:bg-[#037f85]
+												w-[130%] border-[0px] rounded-[10px] mt-[30px] mr-[150px]
+												text-primary ease-in-out rounded-[10px] bg-third text-[20px]" 
+									onClick={ CreateRentACarObject }
+									type="button" >
+								Register
+							</button>
+						</div>
+					</div>				
+				</div>
+				<div className='w-[700px] h-[800px] mr-[150px] mt-[50px]'>
+				<MapContainer   className='w-[700px] h-[750px]' 
+								center={[45.2396, 19.8227]} 
+								zoom={13}
+								maxZoom={20}
+								attributionControl={true}
+								zoomControl={true}
+								doubleClickZoom={true}
+								scrollWheelZoom={true}
+								dragging={true}
+								animate={true}
+								easeLinearity={0.35}>
+								<MapClick />
+					<TileLayer
+						attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+						url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+					/>				
+				</MapContainer>
+				</div>
 			</div>
-			<div className='w-[400px] h-[400px] absolute top-36 left-12'>
-			<MapContainer   className='w-[350px] h-[350px]' center={[45.2396, 19.8227]} zoom={13} scrollWheelZoom={false}>
-				<TileLayer
-					attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-					url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-				/>
-				<Marker position={[45.2396, 19.8227]} icon={icon} >
-					<Popup>
-					A pretty CSS3 popup. <br /> Jaja
-					</Popup>
-				</Marker>
-			</MapContainer>
-		</div>
-		</>
+
 	)
 }
 
