@@ -8,6 +8,7 @@ import EditProfile from './components/EditProfile'
 import CreateRentObject from './components/CreateRentObject'
 import LoginPage from './pages/LoginPage'
 import RegisterPage from './pages/RegisterPage'
+import AddVehicle from './components/AddVehicle';
 
 const App = () => {
    
@@ -45,6 +46,7 @@ const App = () => {
 					<Route path="/profile" Component={Profile} exact/>
 					<Route path="/EditProfile" Component={EditProfile} exact />
 					<Route path="/CreateRentObject" Component={CreateRentObject} exact/>
+					<Route path ="/AddVehicle" Component={AddVehicle} exact />
 				</Routes>       
 			</main>	
 		

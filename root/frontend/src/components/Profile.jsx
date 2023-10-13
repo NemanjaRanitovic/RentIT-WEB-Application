@@ -147,31 +147,62 @@ const Profile = () => {
         </div>
         :
         User.IsManager === "true"?
-        "Profile type: Manager"
+        "Profile type: Manager ovde treba da bude data grid porudzbina"        
         :
         "Profile type: User" //ovde treba dodati jos jedan ===? kasnije da se proveri kakvog tipa je kupac (Golden,silver, itd...)
       }
       </div>
-      <div className=' absolute bg-[#e6e1e1] right-36 top-36 h-[400px] w-[300px] rounded-md font-poppins text-center'
-           style={{border: '1px solid black',
-                   display: 'flex',
-                   justifyContent: 'center'}}>
-        What do you want to do today?
-        <div className = 'top-16 translate-middle absolute'
-             style = {{display:'flex', 
-                       alignItems: 'center',
-                       justifyContent: 'center'}}>
-          <Link to ="/CreateRentObject">
-            <Button variant="contained">
-              Add rent object
-            </Button>
-          </Link>
-        </div>        
+      {
+        User.IsAdmin === "true" ? 
+        <div>
+        
+          <div className=' absolute bg-[#e6e1e1] right-36 top-36 h-[400px] w-[300px] rounded-md font-poppins text-center'
+              style={{border: '1px solid black',
+                      display: 'flex',
+                      justifyContent: 'center'}}>
+            What do you want to do today?
+            <div className = 'top-16 translate-middle absolute'
+                style = {{display:'flex', 
+                          alignItems: 'center',
+                          justifyContent: 'center'}}>
+              <Link to ="/CreateRentObject">
+                <Button variant="contained">
+                  Add rent object
+                </Button>
+              </Link>
+            </div>        
+          </div>      
       </div>
-
+      :
+      User.IsManager === "true" ?
+      <div>
+        <div className=' absolute bg-[#e6e1e1] right-36 top-36 h-[400px] w-[300px] rounded-md font-poppins text-center'
+              style={{border: '1px solid black',
+                      display: 'flex',
+                      justifyContent: 'center'}}>
+            What do you want to do today?
+            <div className = 'top-16 translate-middle absolute'
+                style = {{display:'flex', 
+                          alignItems: 'center',
+                          justifyContent: 'center'}}> 
+                                        
+              <Link to ="/AddVehicle">  
+                <Button variant="contained">
+                  Add a vehicle to your object
+                </Button>
+              </Link>
+            </div>
+                    
+          </div> 
+      </div>
+      :
+      <div>
+        Ne jaja
+      </div>
+      }
 
     </div>
   )
 }
-
+ //promeniti link na 189 liniji
 export default Profile
