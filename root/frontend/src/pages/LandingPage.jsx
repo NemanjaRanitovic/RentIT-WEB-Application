@@ -1,4 +1,5 @@
-import React from 'react'
+import axios from 'axios';
+import React, { useEffect, useState } from 'react'
 import { HeroSection, Objects } from '../components'
 import styles from '../style';
 
@@ -7,8 +8,8 @@ const LandingPage = () => {
     <>
         <HeroSection/>
         <div className={`bg-primary ${styles.flexCenter}`}>
-			<Objects/>
-		</div>
+			    <Objects/>
+		    </div>
     </>
   )
 }

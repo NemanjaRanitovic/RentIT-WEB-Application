@@ -31,9 +31,17 @@ const rentACarObjectSchema = mongoose.Schema(
             enum: ["Opened", "Closed"],
             default: "Opened"
         },
+        Description:{
+            type: String,
+            default: '',
+        },
+        Image:{
+            type: String,
+            default: '',
+        },
         Logo:{
             type: String,
-            
+            default: '',
         },
         AverageRate:{
             type: Number

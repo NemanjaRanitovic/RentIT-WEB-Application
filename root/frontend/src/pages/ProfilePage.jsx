@@ -17,26 +17,6 @@ const Profile = () => {
     const User = JSON.parse(localStorage.getItem('userInfo')); 
     const UserBirthDay = dayjs(User.Date).format("MM/DD/YYYY");
     const [Users,setUsers]= useState([]);
-    const columns = [       
-        {
-            field: 'Name',
-            headerName: 'First name',
-            width: 200,
-            editable: true,
-        },
-        {
-            field: 'Lastname',
-            headerName: 'Last name',
-            width: 200,
-            editable: true,
-        },
-        {
-            field: 'Username',
-            headerName: 'Username',      
-            width: 200,
-            editable: true,
-        },    
-    ];
 
     const fetchUsers = async() =>{
         //return await axios.get('/users/getAllNames');
@@ -44,9 +24,6 @@ const Profile = () => {
         setUsers(data);
     }
 
-    const getRowId = (row)=>{
-        return row.Username;
-    }
     useEffect(() => {    
         console.log(Users);
         fetchUsers();

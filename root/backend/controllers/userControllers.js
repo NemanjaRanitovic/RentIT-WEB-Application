@@ -34,9 +34,6 @@ const registerUser = async(req,res) => {
     }
 }
 
-
-
-
 const editProfile = async(req,res)=>{
     const client = new MongoClient(url);
     await client.connect();
