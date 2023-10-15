@@ -1,1 +1,108 @@
+.parallax{
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    transition: 0.45s cubic-bezier(.2,.49,.32,.99);
+}
 
+.bg-img{
+    position: absolute;
+    width:max-content;
+    left: 50%;
+    top: calc(50% - 40px);
+    z-index: 1;
+}
+
+.merc{
+    position: absolute;
+    width: 300px;
+    left: calc(50% + 150px); 
+    top: calc(50% + 40px);
+    z-index: 2;
+}
+
+.nissan{
+    position: absolute;
+    width: 350px;
+    left: calc(50% + 460px); 
+    top: calc(50% + 40px);
+    z-index: 2;
+}
+
+.volvo{
+    position: absolute;
+    width: 450px;
+    left: calc(50% + 740px); 
+    top: calc(50% + 70px);
+    z-index: 3;
+}
+
+.gclass{
+    position: absolute;
+    width: 550px;
+    left: calc(50% - 230px); 
+    top: calc(50% + 90px);
+    z-index: 5;
+}
+
+.toyota{
+    position: absolute;
+    width: 550px;
+    left: calc(50% - 670px); 
+    top: calc(50% + 90px);
+    z-index: 5;
+}
+
+.audi{
+    position: absolute;
+    width: 550px;
+    left: calc(50% + 270px); 
+    top: calc(50% + 140px);
+    z-index: 5;
+}
+
+.alfa{
+    position: absolute;
+    width: 750px;
+    left: calc(50% + 470px); 
+    top: calc(50% + 240px);
+    z-index: 7;
+}
+
+.bmw{
+    position: absolute;
+    width: 900px;
+    left: calc(50% - 350px); 
+    top: calc(50% + 240px);
+    z-index: 8;
+}
+
+.h{
+    position: absolute;
+    font-size: 13rem;
+}
+
+.p{
+    position: absolute;
+    font-size: 2rem;
+}
+
+@media (max-width: 1100px){
+    .h{
+        font-size: 8rem;
+    }
+
+    .p{
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 725px){
+    .h{
+        top: 37%;
+        font-size: 6rem;
+    }
+
+    .p{
+        font-size: 0.67rem;
+    }
+}
