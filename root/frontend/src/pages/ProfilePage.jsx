@@ -81,11 +81,13 @@ const Profile = () => {
                                                                hover:bg-[#037f85] text-primary mr-[10px] ease-in-out duration-150'>
                                                 Edit Profile
                                             </button>
-                                            <button className='rounded-md bg-none border-[1px] border-[#00ADB5] font-poppins 
-                                                                text-[18px] py-[10px] px-[20px] text-third ml-[10px] 
-                                                                hover:text-primary hover:bg-third ease-in-out duration-150'>
-                                                Messages
-                                            </button>
+                                            <Link to="/CreateRentObject">
+                                                <button className='rounded-md bg-none border-[1px] border-[#00ADB5] font-poppins 
+                                                                    text-[18px] py-[10px] px-[20px] text-third ml-[10px] 
+                                                                    hover:text-primary hover:bg-third ease-in-out duration-150'>
+                                                    Messages
+                                                </button>
+                                            </Link>
                                         </div>
                                     </div>
                                 </div>
