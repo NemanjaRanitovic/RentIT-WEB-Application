@@ -35,10 +35,10 @@ const Register = () => {
 
 	return (
 		<>
-			<div className='w-[850px] h-[750px] bg-white justify-center shadow-2xl relative
+			<div className='w-[850px] h-[750px] bg-[#f5f6fa] justify-center shadow-2xl relative
 							items-center m-auto my-[50px] rounded-[20px] overflow-hidden'>
 				<div className='flex flex-col h-full'>
-					<div className='h-[600px] absolute bg-blue-gradient w-[160%]
+					<div className='h-[600px] absolute bg-third w-[160%]
 									rounded-[50%]  flex flex-col top-[-360px] left-[-400px]'>
 						<h1 className='text-[36px] font-poppins text-primary 
 										mt-[420px] z-10 ml-[450px] font-semibold'>Create</h1>

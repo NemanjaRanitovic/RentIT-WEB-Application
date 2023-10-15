@@ -219,6 +219,7 @@ export const objects = [
     name: "Object 1",
     image: Object1,
     location: "Location 1",
+    description: "Good cars",
     rating: 4.3,
 
   },
@@ -227,6 +228,7 @@ export const objects = [
     name: "Object 2",
     image: Object2,
     location: "Location 2",
+    description: "Good cars",
     rating: 4.0,
   },
   {
@@ -234,6 +236,7 @@ export const objects = [
     name: "Object 3",
     image: Object3,
     location: "Location 3",
+    description: "Good cars",
     rating: 5.0,
   },
   {
@@ -241,6 +244,15 @@ export const objects = [
     name: "Object 4",
     image: Object4,
     location: "Location 4",
+    description: "Good cars",
     rating: 3.9,
+  },
+  {
+    id: "5",
+    name: "Object 5",
+    image: Object1,
+    location: "Location 5",
+    description: "Good cars",
+    rating: 2.9,
   },
 ];

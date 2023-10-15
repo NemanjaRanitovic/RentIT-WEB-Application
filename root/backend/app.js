@@ -6,6 +6,7 @@ const { mongo } = require('mongoose');
 const connectToDb = require("./MongoDB/MongoDB");
 const userRoutes = require("./routes/userRoutes");
 const locationRoutes = require("./routes/locationRoutes");
+const rentACarObjectRoutes = require("./routes/rentACarObjectRoutes");
 const {notFound, errorHandler} = require("./middlewares/errorMiddleware");
 
 const app = express();
@@ -17,6 +18,7 @@ app.use(express.json());
 
 app.use('/users', userRoutes);
 app.use('/locations', locationRoutes);
+app.use('/', rentACarObjectRoutes);
 app.use(notFound);
 app.use(errorHandler);
 

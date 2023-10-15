@@ -6,8 +6,8 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 function Dropdown({ selected, setSelected }) {
     const [isOpen, setIsOpen] = useState(false);
     const [isActive, setIsActive] = useState(false);
-    const options = ['Object name', 'Vehicle type', 'Location', 'Average rate'];
-    const placeholder = 'Search by';
+    const options = ['Car', 'Bike', 'Motorcycle', 'Van', 'Scooter'];
+    const placeholder = 'e.g. Car';
 
     const  dropdownVariants = {
         open: {
@@ -40,10 +40,10 @@ function Dropdown({ selected, setSelected }) {
       };
 
     return (
-        <div className="w-[200px] m-auto font-poppins relative">
-            <div className="bg-white shadow-[3px_3px_10px_6px_rgba(0,0,0,0.2)]
-                            text-secondary items-center font-bold rounded-md
-                            justify-between pt-[10px] pb-[10px]
+        <div className="w-[260px] font-poppins relative">
+            <div className="bg-white shadow-[2px_2px_5px_3px_rgba(0,0,0,0.1)]
+                            text-secondary items-center font-medium rounded-md
+                            justify-between pt-[10px] pb-[10px] h-[45px]
                             pl-[15px] pr-[15px] cursor-pointer relative"
                 onClick={() => setIsActive(!isActive)}>
                     {selected || placeholder}

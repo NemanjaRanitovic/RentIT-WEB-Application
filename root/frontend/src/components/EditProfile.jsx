@@ -5,7 +5,7 @@ import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button'
 import { useState } from 'react'
 import { useNavigate, Link} from "react-router-dom";
-import Register from './Register'
+import RegisterPage from '../pages/RegisterPage'
 import axios from 'axios';
 
 const EditProfile = () => {

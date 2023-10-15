@@ -3,12 +3,13 @@ import {BrowserRouter, Route,Routes} from 'react-router-dom'
 import styles from "./style.js"
 import { Navbar, HeroSection, Footer, Objects, Search, Register} from './components';
 import { useEffect, useState } from 'react';
-import Profile from './components/Profile';
+import ProfilePage from './pages/ProfilePage';
 import EditProfile from './components/EditProfile'
 
 
 import LoginPage from './pages/LoginPage'
 import RegisterPage from './pages/RegisterPage'
+import LandingPage from './pages/LandingPage';
 
 const App = () => {
    
@@ -41,9 +42,9 @@ const App = () => {
 			<main>
 				<Routes>
 					<Route path="/login" Component = {()=><LoginPage authenticate = {userAuthentication}/>}  exact/>
-					<Route path="/" Component = {HeroSection} exact/>
+					<Route path="/" Component = {LandingPage} exact/>
 					<Route path="/register" Component={RegisterPage} exact/>
-					<Route path="/profile" Component={Profile} exact/>
+					<Route path="/profile" Component={ProfilePage} exact/>
 					<Route path="/EditProfile" Component={EditProfile} exact />
 				</Routes>       
 			</main>	
