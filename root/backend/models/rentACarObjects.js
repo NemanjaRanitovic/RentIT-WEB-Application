@@ -22,6 +22,23 @@ const rentACarObjectSchema = mongoose.Schema(
             type: String,
             required:true
         },
+        Street:{
+            type:String,
+            
+        },
+        Number:{
+            type:Number
+        },
+        City:{
+            type:String
+
+        },
+        Latitude:{
+            type:Number
+        },
+        Longitude:{
+            type:Number
+        },
         WorkingHours:{
             type: String,            
             default:"8-14"

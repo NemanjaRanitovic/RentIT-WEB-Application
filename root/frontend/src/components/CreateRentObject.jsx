@@ -58,7 +58,7 @@ const CreateRentObject = () => {
             const {data} = await axios.post('/locations/newLocation',{Street,Number,City,PostalCode,Latitude,Longitude,},config); //prvo kreiranje lokacije   
 			//Ovde izmedju izvuci id od napravljene lokacije RADNO VREME ME MRZI SADA TO CEMO NEKAD			
 			const Location = data._id;
-			const {objectData} = await axios.post('/rentObjects/newRentACarObject',{Name,Location,Manager})                                                                                                        //MENJAJU PODACI A NE DA JE REGISTRACIJA OD 0 
+			const {objectData} = await axios.post('/rentObjects/newRentACarObject',{Name,Location,Manager,Street,City,Number,Latitude,Longitude})                                                                                                        //MENJAJU PODACI A NE DA JE REGISTRACIJA OD 0 
           setLoading(false);
         }catch(error){
           setError(error.response.data.message);

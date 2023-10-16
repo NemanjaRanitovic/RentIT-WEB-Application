@@ -4,12 +4,12 @@ const generateToken = require('../util/generateToken');
 const RentACarObject = require('../models/rentACarObjects');
 const MongoClient = require('mongodb/lib/mongo_client');
 const url = 'mongodb+srv://nemanjaranit:e9NGQzxtp00tfLef@cluster0.60gcb2c.mongodb.net/?retryWrites=true&w=majority';
-
+const {getLocationById} = require ('../controllers/locationControllers.js');
 
 const newRentACarObject = async(req,res)=>{
-    const {Name,Location,Manager} = req.body;
+    const {Name,Location,Manager,Street,City,Number,Latitude,Longitude} = req.body;
     const rentACarObject = await RentACarObject.create({
-        Name,Location,Manager
+        Name,Location,Manager,Street,City,Number,Latitude,Longitude
     });
 
     if(rentACarObject){
@@ -17,7 +17,12 @@ const newRentACarObject = async(req,res)=>{
             _id:rentACarObject._id,
             Name:rentACarObject.Name,
             Location:rentACarObject.Location,
-            Manager:rentACarObject.ManagerUsername
+            Manager:rentACarObject.ManagerUsername,
+            Street:rentACarObject.Street,
+            Number:rentACarObject.Number,
+            City:rentACarObject.City,
+            Latitude:rentACarObject.Latitude,
+            Longitude:rentACarObject.Longitude
                       
         })
     }else{
@@ -31,7 +36,7 @@ const getAllObjects = asyncHandler(async(req, res)=>{
     const client = new MongoClient(url);
     await client.connect();
     const db = client.db()
-    const objects = await db.collection('rentacarobjects').find({}, { projection: { Name:1,Location:1,Description:1,Image:1,AverageRate:1,_id:1} }).toArray();
+    const objects = await db.collection('rentacarobjects').find({}, { projection: { Name:1,Location:1,Street:1,Number:1,City:1,Latitude:1,Longitude:1,Description:1,Image:1,AverageRate:1,_id:1} }).toArray();
     console.log(objects);
     res.json(objects);
     return objects;

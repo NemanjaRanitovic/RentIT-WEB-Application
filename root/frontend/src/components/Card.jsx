@@ -13,31 +13,10 @@ const Card = () => {
         setObjects(data);
     }
 
-    const fetchLocations = async() => {
-        const {data} = await axios.get('/locations/getAllLocations');
-        setLocations(data);
-    }
-
-    /*const objectsWithLocations = async() => {
-        Objects.forEach((object) => {
-            console.log(object.Location, "jaja");
-            let locationData = axios.get(`/locations/getLocationById/${object.Location}`);
-            object.Location = locationData.Street;
-        })
-    }*/
-
     useEffect(() => {    
         fetchObjects();
-        fetchLocations();
     },[]);
 
-    Objects.forEach((object) => {
-        Locations.forEach((location) => {
-            if(object.Location === location._id){
-                object.Location = [location.Street, location.Number, location.City, location.Latitude, location.Longitude];
-            }
-        });
-    });
 
     return (
         <>
@@ -70,9 +49,9 @@ const Card = () => {
                             <hr className='border-[#c9c9c9] w-[320px]'/>
                             <div className='flex flex-col w-[290px]'>
                                 <p className='text-[13px] ml-[2px] text-[#828282]'>Location:</p>
-                                <p className='text-[20px] text-secondary font-medium font-poppins'>{object.Location[0]} {object.Location[1]}</p>
-                                <p className='text-[20px] text-secondary font-medium font-poppins'>{object.Location[2]}</p>
-                                <p className='text-[12px] text-secondary font-medium font-poppins'>Lat: {object.Location[3]}<br/>Long: {object.Location[4]}</p>
+                                <p className='text-[20px] text-secondary font-medium font-poppins'>{object.Street} {object.Number}</p>
+                                <p className='text-[20px] text-secondary font-medium font-poppins'>{object.City}</p>
+                                <p className='text-[12px] text-secondary font-medium font-poppins'>Lat: {object.Latitude}<br/>Long: {object.Longitude}</p>
                             </div>
                             <button className="w-[320px] text-primary ease-in-out mt-[5px]
                                             rounded-md bg-third text-[20px] py-[5px] duration-150
