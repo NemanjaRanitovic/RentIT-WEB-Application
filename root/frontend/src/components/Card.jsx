@@ -1,89 +1,88 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import {objects} from '../constants';
-import {FaShoppingCart, FaRegBookmark, FaStar} from 'react-icons/fa';
+import {FaStar} from 'react-icons/fa';
 
 
 const Card = () => {
 
-    /*const [Objects,setObjects]= useState([]);
-
+    const [Objects,setObjects]= useState([]);
+    const [Locations, setLocations] = useState([]);
+    
     const fetchObjects = async() =>{
         const {data}= await axios.get('/rentObjects/getAllObjects');
         setObjects(data);
     }
 
+    const fetchLocations = async() => {
+        const {data} = await axios.get('/locations/getAllLocations');
+        setLocations(data);
+    }
+
+    /*const objectsWithLocations = async() => {
+        Objects.forEach((object) => {
+            console.log(object.Location, "jaja");
+            let locationData = axios.get(`/locations/getLocationById/${object.Location}`);
+            object.Location = locationData.Street;
+        })
+    }*/
+
     useEffect(() => {    
-        console.log(Objects);
         fetchObjects();
-    },[]);*/
+        fetchLocations();
+    },[]);
 
-    const [Objects, setObjects] = useState([])
-
-    useEffect(() =>{
-        const fetchObjects = async () => {
-            const response = await fetch('/rentObjects/getAllObjects');
-            const json = await response.json();
-
-            if(response.ok){
-                console.log(json);
-                setObjects(json);
+    Objects.forEach((object) => {
+        Locations.forEach((location) => {
+            if(object.Location === location._id){
+                object.Location = [location.Street, location.Number, location.City, location.Latitude, location.Longitude];
             }
-        }
-
-        fetchObjects();
-    }, [])
-    
+        });
+    });
 
     return (
-        <div className='flex flex-row justify-evenly mt-[20px] cursor-pointer relative'>
-            {Objects.map((object) =>(
-                <div key={object._id} className='bg-[#f5f6fa] m-1 flex flex-col max-w-lg shadow-xl
-                                                max-h-[40rem] rounded-md relative mx-[0.5rem] md:w-[300px]
-                                                hover:translate-y-[-0.5rem] ease-in-out duration-300
-                                                hover:shadow-[3px_3px_10px_6px_rgba(0,0,0,0.2)]'>
-                    <img src={object.Image}
-                        alt='product-img' className='m-2.5 rounded-md w-[100px]
-                                                    md:w-[280px]'/>
-                    <button className='absolute right-0 m-[1.5rem]'>
-                        <FaRegBookmark className='text-[25px] hover:text-third text-secondary
-                                                    ease-in-out duration-150'/>
-                    </button>
-                    <div className='m-[1rem]'>
-                        <div className='flex font-poppins flex-row justify-between items-center'>
-                            <h3 className='md:text-[1.5rem] text-[20px]'>
-                                {object.Name}
-                            </h3>
-                            <div className='flex flex-row items-center text-[1.2rem] font-poppins justify-center absolute right-0 mr-[1rem]'>
-                                    2  
-                                    <FaStar className='text-[#fbc531] w-[25px] mb-[3px]'/>
-                            </div>
-                        </div>
-                        <div className='my-[10px] font-poppins'>
-                            <div className='lg:text-[1rem] text-[15px] flex flex-col'>
-                                <div className='flex flex-col left-0 mr-[1rem]'>
-                                    <hr class="rounded" className='mb-[5px] border-[#c9c9c9]'/>
-                                    <p className='text-[13px] text-[#828282]'>Description:</p>
-                                    {object.Description}
-                                    <hr class="rounded" className='mt-[5px] border-[#c9c9c9]'/>
+        <>
+            <div className='flex flex-row cursor-pointer items-center flex-wrap items-center justify-evenly'>
+                {Objects.map((object) => (
+                    <div key={object._id} className='flex flex-row w-auto h-auto bg-[#f5f6fa] rounded-md
+                                                    mt-[20px] relative hover:translate-y-[-0.5rem] ease-in-out duration-300
+                                                    hover:shadow-[3px_3px_10px_6px_rgba(0,0,0,0.2)] shadow-xl'>
+                        <img src={object.Image} alt='product-img' className='m-2.5 rounded-md w-[120px] md:w-[264px]'/>
+                        <div className='flex flex-col'>
+                            <div className='flex font-poppins flex-row justify-between mt-1'>
+                                <h3 className='md:text-[1.4rem] text-[30px] font-bold text-secondary'>
+                                    {object.Name}
+                                </h3>
+                                <div className='flex flex-row items-center text-[1.2rem]  mt-[4px] font-poppins 
+                                                justify-center mr-[1rem] absolute right-0'>
+                                        {object.AverageRate}
+                                        <FaStar className='text-[#fbc531] w-[20px] mb-[3px]'/>
                                 </div>
                             </div>
-                        </div>
-                        <div className='md:my-[0.5rem] font-poppins flex md:flex-row flex-col justify-between md:items-center'>
-                            <div className='lg:text-[1rem] text-[15px] font-bold md:flex'>
-                                <div className='flex items-center md:absolute mr-[1rem]'>
-                                    {object.Location}
+                            <hr className='border-[#c9c9c9] w-[320px] mt-[10px]'/>
+                            <div className='font-poppins w-full h-[65px]'>
+                                <div className='lg:text-[1rem] text-[15px] flex flex-col w-[330px] '>
+                                    <div className='flex flex-col mr-[1rem] w-full'>
+                                        <p className='text-[13px] ml-[2px] text-[#828282]'>Description:</p>
+                                        <p className='text-[17px] text-secondary font-poppins'>{object.Description}</p>
+                                    </div>
                                 </div>
                             </div>
+                            <hr className='border-[#c9c9c9] w-[320px]'/>
+                            <div className='flex flex-col w-[290px]'>
+                                <p className='text-[13px] ml-[2px] text-[#828282]'>Location:</p>
+                                <p className='text-[20px] text-secondary font-medium font-poppins'>{object.Location[0]} {object.Location[1]}</p>
+                                <p className='text-[20px] text-secondary font-medium font-poppins'>{object.Location[2]}</p>
+                                <p className='text-[12px] text-secondary font-medium font-poppins'>Lat: {object.Location[3]}<br/>Long: {object.Location[4]}</p>
+                            </div>
+                            <button className="w-[320px] text-primary ease-in-out mt-[5px]
+                                            rounded-md bg-third text-[20px] py-[5px] duration-150
+                                            cursor-pointer font-poppins hover:bg-[#037f85]" 
+                                    type="button">Visit object</button>
                         </div>
                     </div>
-                    <button className=" w-[100%] text-primary ease-in-out mt-[10px]
-                                            rounded-b-md bg-third text-[20px] py-[5px] duration-150
-                                            cursor-pointer font-poppins hover:bg-[#037f85]" 
-                                type="button">Visit object</button>
-                </div>
-            ))}
-        </div>
+                ))}
+            </div>
+        </>
     )
 }
 

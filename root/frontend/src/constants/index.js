@@ -12,10 +12,10 @@ import dropbox from "../images/dropbox.png";
 import send from "../images/Send.svg";
 import shield from "../images/Shield.svg";
 import star from "../images/Star.svg";
-import Object1 from "../images/Objects/Object1.png"
-import Object2 from "../images/Objects/Object2.png"
-import Object3 from "../images/Objects/Object3.png"
-import Object4 from "../images/Objects/Object4.jpg"
+//import Object1 from "../images/Objects/Object1.png"
+//import Object2 from "../images/Objects/Object2.png"
+//import Object3 from "../images/Objects/Object3.png"
+//import Object4 from "../images/Objects/Object4.jpg"
 
 export const navLinks = [
   {
@@ -217,7 +217,7 @@ export const objects = [
   {
     id: "1",
     name: "Object 1",
-    image: Object1,
+    //image: Object1,
     location: "Location 1",
     description: "Good cars",
     rating: 4.3,
@@ -226,7 +226,7 @@ export const objects = [
   {
     id: "2",
     name: "Object 2",
-    image: Object2,
+    //image: Object2,
     location: "Location 2",
     description: "Good cars",
     rating: 4.0,
@@ -234,7 +234,7 @@ export const objects = [
   {
     id: "3",
     name: "Object 3",
-    image: Object3,
+    //image: Object3,
     location: "Location 3",
     description: "Good cars",
     rating: 5.0,
@@ -242,7 +242,7 @@ export const objects = [
   {
     id: "4",
     name: "Object 4",
-    image: Object4,
+    //image: Object4,
     location: "Location 4",
     description: "Good cars",
     rating: 3.9,
@@ -250,7 +250,7 @@ export const objects = [
   {
     id: "5",
     name: "Object 5",
-    image: Object1,
+    //image: Object1,
     location: "Location 5",
     description: "Good cars",
     rating: 2.9,

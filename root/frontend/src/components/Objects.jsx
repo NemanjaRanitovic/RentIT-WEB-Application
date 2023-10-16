@@ -56,9 +56,6 @@ const Objects = () => {
                         <Fade bottom distance='20%'>
                             <Card/>
                         </Fade>
-                        <Fade bottom distance='20%'>
-                            <Card/>
-                        </Fade>
                     </div>
                 </div>
             </div>
