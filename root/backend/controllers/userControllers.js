@@ -75,7 +75,27 @@ const getAllManagers = asyncHandler(async(req,res)=>{
     const users = await db.collection('users').find({isManager:"true"}, { projection: { Username:1,_id:0} }).toArray();    
     res.json(users);
     return users;
+});
 
+const getAllUnassignedManagers = asyncHandler(async(req,res)=>{
+    const client = new MongoClient(url);
+    await client.connect();
+    const db = client.db();
+    const users = await db.collection('users').find({isAssigned:false}, { projection: { Username:1,_id:0} }).toArray();    
+    res.json(users);
+    return users;
+})
+
+const assignManager = asyncHandler(async(req,res)=>{
+    const {Username,ObjectId} = req.body;
+    const client = new MongoClient(url);
+    await client.connect();
+    const db = client.db()
+    const user = await User.findOne({Username});
+    if(user){
+        db.collection('users').updateOne({Username: Username},{$set:{isAssigned:true}});
+        db.collection('users').updateOne({Username: Username},{$set:{assignedObjectId:ObjectId}});  
+    }
 });
 
 const logIn = asyncHandler(async(req,res)=>{
@@ -100,4 +120,4 @@ const logIn = asyncHandler(async(req,res)=>{
         throw new Error("Invalid log in data");
     }
 });
-module.exports = {registerUser,editProfile, logIn,getAllNames,getAllManagers};
+module.exports = {registerUser,editProfile, logIn,getAllNames,getAllManagers,assignManager,getAllUnassignedManagers};

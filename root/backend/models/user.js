@@ -37,6 +37,13 @@ const userSchema = mongoose.Schema(
             type:String,
             default:false,
         },
+        isAssigned:{
+            type:Boolean,
+            default:false            
+        },
+        assignedObjectId:{
+            type:String
+        },
         BirthDate:{
             type:Date,
             required:true,
