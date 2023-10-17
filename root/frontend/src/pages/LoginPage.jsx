@@ -35,7 +35,7 @@ const LogIn = (props) => {
         <>
             <div className='relative flex overflow-hidden shadow-2xl
                             flex-col bg-[#f5f6fa] h-[750px] w-[500px] 
-                            items-center m-auto my-[50px] rounded-[20px]'>
+                            items-center m-auto my-[100px] rounded-[20px]'>
                 <div className='bg-third h-[750px] w-[160%] justify-start 
                                 rounded-[50%] absolute flex flex-col top-[-420px] left-[-200px] '>
                     <h1 className='text-[36px] font-poppins text-primary 

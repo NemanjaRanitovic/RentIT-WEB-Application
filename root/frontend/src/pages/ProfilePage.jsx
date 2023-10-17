@@ -31,7 +31,7 @@ const Profile = () => {
     
     return (
         <>
-            <div className='mr-[-8px] ml-[-8px] flex flex-row'>
+            <div className='mr-[-8px] ml-[-8px] my-[100px] flex flex-row'>
                 <div className='p-4 ml-[300px]'>
                     <div class="leading-[35px]">
                         <div className="w-[450px] mb-4">

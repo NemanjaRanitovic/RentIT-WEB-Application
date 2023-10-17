@@ -10,6 +10,7 @@ import LoginPage from './pages/LoginPage'
 import RegisterPage from './pages/RegisterPage'
 import AddVehicle from './components/AddVehicle';
 import LandingPage from './pages/LandingPage';
+import RentACarObjectPage from './pages/RentACarObjectPage';
 
 const App = () => {
    
@@ -47,7 +48,8 @@ const App = () => {
 					<Route path="/profile" Component={ProfilePage} exact/>
 					<Route path="/EditProfile" Component={EditProfile} exact />
 					<Route path="/CreateRentObject" Component={CreateRentObject} exact/>
-					<Route path ="/AddVehicle" Component={AddVehicle} exact />
+					<Route path="/AddVehicle" Component={AddVehicle} exact />
+					<Route path='/Object/:objectId' Component={RentACarObjectPage} exact />
 				</Routes>       
 			</main>	
 		

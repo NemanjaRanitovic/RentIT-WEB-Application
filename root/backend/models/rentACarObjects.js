@@ -31,7 +31,6 @@ const rentACarObjectSchema = mongoose.Schema(
         },
         City:{
             type:String
-
         },
         Latitude:{
             type:Number

@@ -4,7 +4,6 @@ const generateToken = require('../util/generateToken');
 const RentACarObject = require('../models/rentACarObjects');
 const MongoClient = require('mongodb/lib/mongo_client');
 const url = 'mongodb+srv://nemanjaranit:e9NGQzxtp00tfLef@cluster0.60gcb2c.mongodb.net/?retryWrites=true&w=majority';
-const {getLocationById} = require ('../controllers/locationControllers.js');
 
 const newRentACarObject = async(req,res)=>{
     const {Name,Location,Manager,Street,City,Number,Latitude,Longitude} = req.body;
@@ -42,4 +41,20 @@ const getAllObjects = asyncHandler(async(req, res)=>{
     return objects;
 });
 
-module.exports = {newRentACarObject, getAllObjects}
+const getObjectById = async(req,res) => {
+    try {
+      const objectData = await RentACarObject.findById(req.params.objectId);
+  
+      if (objectData) {
+        res.json(objectData);
+        return objectData;
+      } else {
+        return null; 
+      }
+    } catch (error) {
+      console.error('Error retrieving location data:', error);
+      throw error;
+    }
+};
+
+module.exports = {newRentACarObject, getAllObjects, getObjectById}

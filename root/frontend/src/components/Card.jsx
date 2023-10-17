@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import {FaStar} from 'react-icons/fa';
+import {Link} from "react-router-dom"
 
 
 const Card = () => {
@@ -53,10 +54,12 @@ const Card = () => {
                                 <p className='text-[20px] text-secondary font-medium font-poppins'>{object.City}</p>
                                 <p className='text-[12px] text-secondary font-medium font-poppins'>Lat: {object.Latitude}<br/>Long: {object.Longitude}</p>
                             </div>
-                            <button className="w-[320px] text-primary ease-in-out mt-[5px]
-                                            rounded-md bg-third text-[20px] py-[5px] duration-150
-                                            cursor-pointer font-poppins hover:bg-[#037f85]" 
-                                    type="button">Visit object</button>
+                            <Link to={`/Object/${object._id}`}>
+                                <button className="w-[320px] text-primary ease-in-out mt-[5px]
+                                                rounded-md bg-third text-[20px] py-[5px] duration-150
+                                                cursor-pointer font-poppins hover:bg-[#037f85]" 
+                                        type="button">Visit object</button>
+                            </Link>
                         </div>
                     </div>
                 ))}
