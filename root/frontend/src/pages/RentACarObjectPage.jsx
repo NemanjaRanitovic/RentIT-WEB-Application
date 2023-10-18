@@ -5,23 +5,62 @@ import {FaStar} from 'react-icons/fa'
 import {IoLocationSharp} from 'react-icons/io5'
 import {GoNote} from 'react-icons/go'
 
+import iconMarker from 'leaflet/dist/images/marker-icon.png'
+import iconRetina from 'leaflet/dist/images/marker-icon-2x.png'
+import iconShadow from 'leaflet/dist/images/marker-shadow.png'
+import { MapContainer, TileLayer, Marker, Popup, useMapEvent } from 'react-leaflet';
+import 'leaflet/dist/leaflet.css';
+import L from 'leaflet';
+
 const RentACarObjectPage = () => {
     
     const {objectId} = useParams();
 
     const [Object, setObject] = useState();
 
+    const [Latitude, setLatitude] = useState();
+    const [Longitude, setLongitude] = useState();   
+    const [isLoading, setLoading] = useState(true);
+
+
+    const icon = L.icon({ 
+        iconRetinaUrl:iconRetina, 
+        iconUrl: iconMarker, 
+        shadowUrl: iconShadow, 
+        iconSize: [25,41], 
+        iconAnchor: [12,41]
+    });
+
     const fetchObject = async() => {
         const {data} = await axios.get(`/rentObjects/getObjectById/${objectId}`);
         setObject(data);
+        
     };
 
     useEffect(() => {
-        fetchObject();
-    }, []);
+        fetchObject(); 
+        setLatitude(Object?.Latitude);
+        setLongitude(Object?.Longitude);
+    });
 
-    console.log(Object);
+    useEffect(()=>{        
+        setTimeout(()=> {
+            setLoading(false);
+        },1000)        
+    },[Object]);
 
+    
+    if(isLoading){
+        return ( 
+            <div style={{ 
+              display: "flex", 
+              flexDirection: "column", 
+              alignItems: "center", 
+              justifyContent: "center", 
+              height: "100vh", 
+            }}>Loading the page</div> 
+          );
+    }else
     return (
         <>
             <div className='mt-[100px] h-screen'>
@@ -41,8 +80,25 @@ const RentACarObjectPage = () => {
                                     <p className='ml-[5px]'>Location:</p>
                                 </div>
                                 <p className='text-[24px] text-secondary font-poppins font-medium flex-wrap '>{Object?.Street} {Object?.Number}</p>
-                                <p className='text-[24px] text-secondary font-poppins font-medium flex-wrap '>{Object?.City}</p>
-                                <p className='text-[17px] text-secondary font-regular font-poppins'>Lat: {Object?.Latitude}<br/>Long: {Object?.Longitude}</p>
+                                <p className='text-[24px] text-secondary font-poppins font-medium flex-wrap '>{Object?.City}</p>     
+                                            <div className='w-[350px] h-[550px]'>
+                                            <MapContainer   className='w-[350px] h-[250px]' 
+                                                            center={[Latitude, Longitude]} 
+                                                            zoom={13}
+                                                            maxZoom={18}
+                                                            attributionControl={true}
+                                                            zoomControl={true}                                                            
+                                                            scrollWheelZoom={true}
+                                                            dragging={true}
+                                                            animate={true}
+                                                            easeLinearity={0.35}>                                                                                                           
+                                                <TileLayer
+                                                    attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                                                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                                                />	
+                                                <Marker position={[Latitude,Longitude]} icon={icon}></Marker>			
+                                            </MapContainer>
+                                        </div>                                                                                                             
                             </div>
                             <hr className='border-[#c9c9c9] w-full mt-[10px]'/>
                             <div className='h-[150px] mt-[10px]'>
