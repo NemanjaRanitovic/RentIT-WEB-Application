@@ -43,7 +43,7 @@ const Navbar = (props) => {
 			<ul className='list-none sm:flex hidden justify-end 
 							items-center flex-1'>
 				<Link to = "/">
-					<li className='font-poppins hover:text-primary
+					<li className='font-poppins hover:text-third
 									font-normal cursor-pointer
 									text-[16px] text-black mr-10'
 									>
@@ -51,17 +51,17 @@ const Navbar = (props) => {
 					
 					</li>
 				</Link>
-				<li className='font-poppins hover:text-primary
+				<li className='font-poppins hover:text-third
 								font-normal cursor-pointer
 								text-[16px] text-black mr-10'>
 					<a href='/objects'>Objects</a>
 				</li>
-				<li className='font-poppins hover:text-primary
+				<li className='font-poppins hover:text-third
 								font-normal cursor-pointer
 								text-[16px] text-black mr-10'>
 					<a href='/'>Contact</a>
 				</li>
-				<li className='font-poppins hover:text-primary
+				<li className='font-poppins hover:text-third
 								font-normal cursor-pointer
 								text-[16px] text-black mr-10'>
 					<a href='/'>Chart</a>
@@ -69,7 +69,7 @@ const Navbar = (props) => {
 				<li>
 				{
 					ime === "Log in" ?
-					<li className='font-poppins hover:text-primary
+					<li className='font-poppins hover:text-third
 							font-normal cursor-pointer
 							text-[16px] text-black'>
 						<Link to = "/login">
@@ -78,7 +78,7 @@ const Navbar = (props) => {
 					</li>	
 					
 					:
-					<li className='font-poppins hover:text-primary
+					<li className='font-poppins hover:text-third
 							font-normal cursor-pointer
 							text-[16px] text-black'>
 						<Link to = "/profile">
