@@ -12,6 +12,8 @@ import { DataGrid } from '@mui/x-data-grid';
 import Box from '@mui/material/Box';
 import Field from '../components/Field';
 import { useTable } from "react-table";
+import Button from '@mui/material/Button';
+import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
 
 const Profile = () => {
     const User = JSON.parse(localStorage.getItem('userInfo')); 
@@ -159,7 +161,13 @@ const Profile = () => {
                                     </div>
                                     :
                                     User.IsManager === "true"?
-                                    "Profile type: Manager"
+                                    <div className='bg-[#000000] w-[500px] h-[500px]'>
+                                        <Link to="/AddVehicle">
+                                        <Button variant="contained" endIcon={<DirectionsCarIcon />}>
+                                            Add vehicle
+                                        </Button>
+                                        </Link>
+                                    </div>
                                     :
                                     "Profile type: User" //ovde treba dodati jos jedan ===? kasnije da se proveri kakvog tipa je kupac (Golden,silver, itd...)
                                 }
