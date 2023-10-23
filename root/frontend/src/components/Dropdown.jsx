@@ -3,11 +3,11 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 
-function Dropdown({ selected, setSelected }) {
+function Dropdown({ selected, setSelected, Options }) {
     const [isOpen, setIsOpen] = useState(false);
     const [isActive, setIsActive] = useState(false);
-    const options = ['Car', 'Bike', 'Motorcycle', 'Van', 'Scooter'];
-    const placeholder = 'e.g. Car';
+    const options = Options;
+    const placeholder = '';
 
     const  dropdownVariants = {
         open: {
@@ -55,7 +55,7 @@ function Dropdown({ selected, setSelected }) {
                 <motion.div
                     className=" absolute top-full w-full left-0 rounded-b-md mt-[5px]
                                 bg-secondary shadow-[3px_3px_10px_6px_rgba(0,0,0,0.2)]
-                                font-normal text-primary z-[1]"
+                                font-normal text-primary z-[1] overflow-y-auto h-[220px]"
                     variants={dropdownVariants}
                     initial="closed"
                     animate="open"

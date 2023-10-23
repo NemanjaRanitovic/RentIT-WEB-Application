@@ -54,7 +54,7 @@ const Navbar = (props) => {
 				<li className='font-poppins hover:text-third
 								font-normal cursor-pointer
 								text-[16px] text-black mr-10'>
-					<a href='/objects'>Objects</a>
+					<a href='#objects'>Objects</a>
 				</li>
 				<li className='font-poppins hover:text-third
 								font-normal cursor-pointer

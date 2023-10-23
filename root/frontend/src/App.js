@@ -11,6 +11,7 @@ import RegisterPage from './pages/RegisterPage'
 import AddVehicle from './components/AddVehicle';
 import LandingPage from './pages/LandingPage';
 import RentACarObjectPage from './pages/RentACarObjectPage';
+import VehicleDetailsPage from './pages/VehicleDetailsPage';
 
 const App = () => {
    
@@ -50,6 +51,7 @@ const App = () => {
 					<Route path="/CreateRentObject" Component={CreateRentObject} exact/>
 					<Route path="/AddVehicle" Component={AddVehicle} exact />
 					<Route path='/Object/:objectId' Component={RentACarObjectPage} exact />
+					<Route path="/Object/vehicle" Component={VehicleDetailsPage} exact />
 				</Routes>       
 			</main>	
 		
