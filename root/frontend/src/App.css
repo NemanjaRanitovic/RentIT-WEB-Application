@@ -106,3 +106,45 @@
         font-size: 0.67rem;
     }
 }
+
+.container{
+    width: 100%;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-left: auto;
+    margin-right: auto;
+    transition: 0.3s;
+    z-index: 0;
+}
+
+.container img{
+    width: 90%;
+    height: 90%;
+    opacity: 1;
+    transition: 0.3s;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.container p{
+    opacity: 0;
+    font-family: 'poppins';
+    z-index: 1;
+    color: white;
+}
+
+.container:hover p{
+    opacity: 1;
+}
+
+.container:hover{
+    background-color: #000000;
+    opacity: 0.8;
+}
+
+.container:hover img{
+    opacity: 0.2;
+    filter: blur(2px);
+}

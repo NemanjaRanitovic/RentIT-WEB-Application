@@ -13,13 +13,13 @@ const Objects = () => {
 
     return (
         <>
-            <div className='flex flex-col items-center justify-center'>
+            <div id='objects' className='flex flex-col items-center justify-center'>
                 <div className='flex flex-col rounded-2xl shadow-xl bg-[#f5f6fa] my-[20px] relative'>
                     <p className='absolute top-[20px] left-[60px] font-poppins text-[2rem] font-medium text-secondary'>Search for rent a car objects</p>
                     <div className='w-[1500px] h-[300px] flex flex-row  items-center justify-center '>
                         <div className='flex flex-col'>
                             <p className='font-poppins text-[1rem] text-secondary font-regular'>Type of vehicle</p>
-                            <Dropdown selected={selected} setSelected={setSelected}/>
+                            <Dropdown selected={selected} setSelected={setSelected} Options={['Car', 'Bike', 'Motorcycle', 'Van', 'Scooter']}/>
                         </div>
                         <div className='flex flex-col ml-[20px]'>
                             <p className='font-poppins text-[1rem] text-secondary font-regular'>Object name</p>
