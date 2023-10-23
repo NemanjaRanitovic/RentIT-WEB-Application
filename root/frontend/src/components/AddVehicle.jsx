@@ -11,11 +11,13 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormLabel from '@mui/material/FormLabel';
 import Slider from '@mui/material/Slider';
 import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import axios from 'axios';
 
 const AddVehicle = () => {
 
   const [items, setItems] = useState([]);
-
+  const [Manager, setManager] = useState('');
   const [CarBrand, setCarBrand] = React.useState('');
   const [DisplayArray, setDisplayArray] = useState([])
   const [CarModel,setCarModel] = React.useState('');
@@ -26,6 +28,7 @@ const AddVehicle = () => {
   const [Valute, setValute] = useState('')
   const [Price, setPrice] = useState('')
   const [PriceDisplay, setPriceDisplay] = useState('');
+  const [error, setError] = useState(false);
 
 
 
@@ -64,6 +67,25 @@ const AddVehicle = () => {
     const inputPrice = parseFloat(event.target.value);
     setPrice(inputPrice);
   };
+
+  const AddVehicle = async(event) => {
+    try{
+    const config = {
+      headers:{
+        "Content-type":"application/json"
+      }
+    }
+    const Brand = CarBrand;
+    const Model = CarModel;
+    const Type = BodyworkType;
+    const Consumption = FuelConsumption;
+    const {data} = await axios.put('/vehicles/addVehicle',{Brand,Model,Price,Type,FuelType,Consumption,Manager,numberOfDoors},config); //user routes, user controllers           
+  }catch(error){
+    setError(error.response.data.message);
+  }
+  
+  }
+
   useEffect(()=>{
     priceDisplay(Price);
   },[Price]);
@@ -99,16 +121,13 @@ const AddVehicle = () => {
     'TOYOTA',
     'HYUNDAI',
     'PEUGEOT',
-    'CITROEN',
-    ''
+    'CITROEN'
   ]
   const BodyWorks = [
-    'Coupe',
-    'Caravan',
-    'Sedan',
-    'Hatchback',
-    'Fastback',
-    'Sports car'
+    'Car',
+    'Truck',
+    'Motorcycle',
+    'Other'
   ]
   const BMWTypes = [
     'M2',
@@ -116,7 +135,8 @@ const AddVehicle = () => {
     'M5',
     'E36',
     'E46',
-    'F90'
+    'F10',
+    'E90'
   ]
 
   const currencies = [
@@ -154,6 +174,7 @@ const AddVehicle = () => {
     const items = JSON.parse(localStorage.getItem('userInfo'));
     if (items) {
      setItems(items);
+     setManager(items.Username);
     }
   }, []);
 
@@ -242,7 +263,7 @@ const AddVehicle = () => {
                 onChange={updateDoorNumber}
               >
                 <FormControlLabel value="3 doors" control={<Radio />} label="3 Doors" />
-                <FormControlLabel value="5 doors" control={<Radio />} label="4 Doors" />
+                <FormControlLabel value="5 doors" control={<Radio />} label="5 Doors" />
               </RadioGroup>
           </FormControl>
           </div>
@@ -354,7 +375,12 @@ const AddVehicle = () => {
             Price is converted to EUR
           </div>
           
+          
+          
       </div>
+      <div className='absolute top-[570px] left-[1500px]'>
+            <Button variant="contained" onClick={AddVehicle}>Add vehicle</Button>
+          </div>
     </div>
   )
 }

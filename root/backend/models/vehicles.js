@@ -15,31 +15,18 @@ const vehicleSchema = new mongoose.Schema({
         required: true
     },
     Type:{
-        type: Number,
-        enum:["Car", "Truck", "Motorcycle", "Other"],
-        required: true
-    },
-    RentACarObject:{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "RentACarObject"
-    },
-    Transmission:{
         type: String,
-        enum: ["Manual", "Automatic"],
         required: true
     },
     FuelType:{
         type: String,
-        enum: ["Gasoline", "Diesel", "Hybrid", "Other"],
+        enum: ["Petrol", "Diesel"],
         required: true
     },
     Consumption:{
         type: String
     },
     NumberOfDoors: {
-        type: Number
-    },
-    NumberOfSeats: {
         type: Number
     },
     Description:{

@@ -46,6 +46,11 @@ const CreateRentObject = () => {
 		setManagerUsername(event.target.value);				
 	}
 
+	const getObjectData = async(Location)=>{
+		const {data} = await axios.post('/rentObjects/newRentACarObject',{Name,Location,Manager,Street,City,Number,Latitude,Longitude}) 
+		return data;
+	}
+
 	const CreateRentACarObject = async (event) => {
 		event.preventDefault();
         try{
@@ -53,12 +58,16 @@ const CreateRentObject = () => {
             headers:{
               "Content-type":"application/json"
             }
-          }
+          } 
           setLoading(true);
             const {data} = await axios.post('/locations/newLocation',{Street,Number,City,PostalCode,Latitude,Longitude,},config); //prvo kreiranje lokacije   
 			//Ovde izmedju izvuci id od napravljene lokacije RADNO VREME ME MRZI SADA TO CEMO NEKAD			
 			const Location = data._id;
-			const {objectData} = await axios.post('/rentObjects/newRentACarObject',{Name,Location,Manager,Street,City,Number,Latitude,Longitude})                                                                                                        //MENJAJU PODACI A NE DA JE REGISTRACIJA OD 0 
+			const objectData = await getObjectData(Location);
+			console.log(objectData._id);
+			const assignedObjectId = objectData._id;
+			const Username = Manager;
+			const {managerData} = await axios.put('/users/assignManager',{assignedObjectId,Username});                                                                                                     //MENJAJU PODACI A NE DA JE REGISTRACIJA OD 0 
           setLoading(false);
         }catch(error){
           setError(error.response.data.message);

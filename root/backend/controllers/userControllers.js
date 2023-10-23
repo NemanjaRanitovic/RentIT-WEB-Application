@@ -58,6 +58,17 @@ const editProfile = async(req,res)=>{
     }
 }
 
+const assignManager = async(req,res)=>{
+    const client = new MongoClient(url);
+    await client.connect();
+    const db = client.db(); 
+    const {assignedObjectId,Username} = req.body;
+    if(assignedObjectId){
+        db.collection('users').updateOne({Username: Username},{$set:{assignedObjectId:assignedObjectId}});
+        db.collection('users').updateOne({Username: Username},{$set:{isAssigned:true}});
+    }
+}
+
 const getAllNames = asyncHandler(async(req, res)=>{
     const client = new MongoClient(url);
     await client.connect();
@@ -100,4 +111,4 @@ const logIn = asyncHandler(async(req,res)=>{
         throw new Error("Invalid log in data");
     }
 });
-module.exports = {registerUser,editProfile, logIn,getAllNames,getAllManagers};
+module.exports = {registerUser,editProfile, logIn,getAllNames,getAllManagers,assignManager};
