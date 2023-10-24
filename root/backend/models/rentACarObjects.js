@@ -10,8 +10,8 @@ const rentACarObjectSchema = mongoose.Schema(
         
         Vehicles:[
             {
-                type: mongoose.Schema.Types.ObjectId,
-                ref: "Vehicle"
+                type: String,
+                required: true,
             }
         ],
         Manager:{

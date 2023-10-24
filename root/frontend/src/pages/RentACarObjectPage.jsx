@@ -25,7 +25,7 @@ const RentACarObjectPage = () => {
     const [Latitude, setLatitude] = useState();
     const [Longitude, setLongitude] = useState();   
     const [isLoading, setLoading] = useState(true);
-
+    const [objectVehicles, setObjectVehicles] = useState([]);
 
     const icon = L.icon({ 
         iconRetinaUrl:iconRetina, 
@@ -38,19 +38,39 @@ const RentACarObjectPage = () => {
     const fetchObject = async() => {
         const {data} = await axios.get(`/rentObjects/getObjectById/${objectId}`);
         setObject(data);
-        
     };
 
+    const fetchVehicleData = async () => {
+        if (Object && Object.Vehicles) {
+            const vehiclePromises = Object.Vehicles.map(async (vehicleId) => {
+                const { data } = await axios.get(`/vehicles/getVehicleById/${vehicleId}`);
+                return data;
+            });
+
+            const vehicles = await Promise.all(vehiclePromises);
+            setObjectVehicles(vehicles);
+            console.log(vehicles);
+        }
+    };
     useEffect(() => {
-        fetchObject(); 
+        fetchObject();
+    }, [objectId]);
+
+    useEffect(() => { 
         setLatitude(Object?.Latitude);
         setLongitude(Object?.Longitude);
     });
 
+    useEffect(() => {
+        if (Object) {
+            fetchVehicleData();
+        }
+    }, [Object]);
+
     useEffect(()=>{        
         setTimeout(()=> {
             setLoading(false);
-        },500)        
+        },1500)        
     },[Object]);
 
     
@@ -143,13 +163,14 @@ const RentACarObjectPage = () => {
                                             type="button">Apply filters</button>
                             </div>
                         </div>
-                        <div className='w-full h-auto my-[20px] justify-between flex flex-row flex-wrap'>
-                            <VehicleCard Image={'/bmw.png'} Name={'BMW 420d'} Price={'$490 per day'}/>
-                            <VehicleCard Image={'/audi.png'} Name={'Audi A6'} Price={'$640 per day'}/>
-                            <VehicleCard Image={'/merc.png'} Name={'Mercedes Benz E220'} Price={'$700 per day'}/>
-                            <VehicleCard Image={'/alfa.png'} Name={'Alfa Romeo Giulia'} Price={'$400 per day'}/>
-                            <VehicleCard Image={'/volvo.png'} Name={'Volvo XC90'} Price={'$500 per day'}/>
-                            <VehicleCard Image={'/toyota.png'} Name={'Toyota RAV4'} Price={'$250 per day'}/>
+                        <div className='w-full h-auto my-[20px] justify-between flex flex-start flex-row flex-wrap'>
+                            {
+                                objectVehicles.map((vehicle) => (
+                                    <VehicleCard id={vehicle._id} Name={vehicle.Brand} Price={vehicle.Price} Consumption={vehicle.Consumption}
+                                                Image={vehicle.Brand.toLowerCase()} Model={vehicle.Model} ImgModel={vehicle.Model.toLowerCase()}
+                                                FuelType={vehicle.FuelType}/>
+                                ))
+                            }
                         </div>
                     </div>
                 </div>

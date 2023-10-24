@@ -18,6 +18,7 @@ const Card = () => {
         fetchObjects();
     },[]);
 
+    console.log(Objects);
 
     return (
         <>

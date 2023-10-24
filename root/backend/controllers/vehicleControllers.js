@@ -31,12 +31,25 @@ const addVehicle = async(req,res)=>{
     }
 
     const object = await db.collection('rentacarobjects').findOne({Manager:Manager});
-
-    db.collection('rentacarobjects').updateOne({Manager:Manager},{$push:{'Vehicles':{'_id':vehicle._id}}});
+    const vehicleId = vehicle._id;
+    db.collection('rentacarobjects').updateOne({Manager:Manager},{$push:{'Vehicles': vehicleId.valueOf()}});
     
 }
 
+const getVehicleById = async(req, res) => {
+    try {
+        const vehicleData = await Vehicle.findById(req.params.vehicleId);
+
+        if(vehicleData){
+            res.json(vehicleData);
+            return vehicleData;
+        } else {
+            return null;
+        }
+    } catch (error) {
+        console.error('Error retrieving vehicle data', error);
+    }
+};
 
 
-
-module.exports = {addVehicle};
+module.exports = {addVehicle, getVehicleById};
