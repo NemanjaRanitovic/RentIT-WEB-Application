@@ -32,7 +32,7 @@ const VehicleCard = ({Image, Name, Price, id, Model, ImgModel, Consumption, Fuel
 					</div>
 					<div className='flex flex-row justify-between items-center mt-[30px] mb-[30px]'>
 						<p className='md:text-[1.5rem] text-[35px] font-semibold font-poppins text-secondary'>${Price} per day</p> 
-						<button className="w-[120px] text-primary ease-in-out rounded-md bg-third text-[20px] py-[5px] duration-150
+						<button className="w-[135px] text-primary ease-in-out rounded-md bg-third text-[20px] py-[5px] duration-150
 											cursor-pointer font-poppins hover:bg-[#037f85]" 
 								type="button">Rent now</button>
 					</div>
