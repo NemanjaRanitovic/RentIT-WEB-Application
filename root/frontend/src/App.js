@@ -51,7 +51,7 @@ const App = () => {
 					<Route path="/CreateRentObject" Component={CreateRentObject} exact/>
 					<Route path="/AddVehicle" Component={AddVehicle} exact />
 					<Route path='/Object/:objectId' Component={RentACarObjectPage} exact />
-					<Route path="/Object/vehicle" Component={VehicleDetailsPage} exact />
+					<Route path="/Object/vehicle/:vehicleId" Component={VehicleDetailsPage} exact />
 				</Routes>       
 			</main>	
 		
