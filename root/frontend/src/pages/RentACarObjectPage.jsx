@@ -5,6 +5,7 @@ import {FaStar} from 'react-icons/fa'
 import {IoLocationSharp} from 'react-icons/io5'
 import {GoNote} from 'react-icons/go'
 import Dropdown from '../components/Dropdown';
+import Fade from 'react-reveal/Fade';
 
 import iconMarker from 'leaflet/dist/images/marker-icon.png'
 import iconRetina from 'leaflet/dist/images/marker-icon-2x.png'
@@ -166,9 +167,11 @@ const RentACarObjectPage = () => {
                         <div className='w-full h-auto my-[20px] justify-between flex flex-start flex-row flex-wrap'>
                             {
                                 objectVehicles.map((vehicle) => (
-                                    <VehicleCard id={vehicle._id} Name={vehicle.Brand} Price={vehicle.Price} Consumption={vehicle.Consumption}
-                                                Image={vehicle.Brand.toLowerCase()} Model={vehicle.Model} ImgModel={vehicle.Model.toLowerCase()}
-                                                FuelType={vehicle.FuelType}/>
+                                    <Fade bottom distance='20%'>
+                                        <VehicleCard id={vehicle._id} Name={vehicle.Brand} Price={vehicle.Price} Consumption={vehicle.Consumption}
+                                                    Image={vehicle.Brand.replace(/\s/g, '').toLowerCase()} Model={vehicle.Model} ImgModel={vehicle.Model.replace(/\s/g, '').toLowerCase()}
+                                                    FuelType={vehicle.FuelType}/>
+                                    </Fade>
                                 ))
                             }
                         </div>

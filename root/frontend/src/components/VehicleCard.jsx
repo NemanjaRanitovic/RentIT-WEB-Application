@@ -13,7 +13,7 @@ const VehicleCard = ({Image, Name, Price, id, Model, ImgModel, Consumption, Fuel
 					</div>
 				</Link>
 				<div className='z-[1] px-3 rounded-t-xl absolute top-[190px] bg-[#f5f6fa] w-full'>
-					<p className='md:text-[2rem] text-[35px] font-semibold font-poppins text-secondary'>{Name} {Model}</p>  
+					<p className='md:text-[1.6rem] text-[30px] font-semibold font-poppins text-secondary'>{Name} {Model}</p>  
 					<div className='flex flex-row justify-between mt-[10px]'>
 						<p className='text-[18px] font-regular text-[#828282]'>Horsepower:</p> 
 						<p className='text-[18px] font-regular text-[#828282]'>144</p> 
