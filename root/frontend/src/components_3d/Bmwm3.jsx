@@ -11,7 +11,7 @@ import React, { useRef } from 'react'
 import { useGLTF } from '@react-three/drei'
 
 export function Bmwm3(props) {
-  const { nodes, materials } = useGLTF('/bmwm3.gltf')
+  const { nodes, materials } = useGLTF('/Models/bmwm3.gltf')
   return (
     <group {...props} dispose={null} scale={1.7}>
       <group position={[0, 0, -0.01]}>
