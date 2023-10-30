@@ -13,7 +13,7 @@ import { useGLTF } from '@react-three/drei'
 export function Bmwm3(props) {
   const { nodes, materials } = useGLTF('/Models/bmwm3.gltf')
   return (
-    <group {...props} dispose={null} scale={1.7}>
+    <group {...props} dispose={null} scale={2}>
       <group position={[0, 0, -0.01]}>
         <mesh geometry={nodes.Object_28.geometry} material={materials.headlight} />
         <mesh geometry={nodes.Object_29.geometry} material={materials.headlight} />

@@ -63,30 +63,34 @@ const VehicleDetailsPage = () => {
 					<p className='text-[24px] font-regular text-[#828282]'>Status:</p> 
 					<p className='text-[24px] font-regular text-[#4cd137]'>Available</p>
 				</div>
-				<hr className='border-[#c9c9c9] mx-4 mt-[30px]'/>
-				<div className='flex flex-col h-[200px] mx-4 mt-2'>
-					<div className='flex flex-row text-[24px] text-[#828282] items-center'>
-                        <GoNote/>
-                        <p className='ml-[5px]'>Description:</p>
-                    </div>
-					<p className='text-[24px] font-regular text-[#828282]'>Good performance car</p>
-				</div>
 				<hr className='border-[#c9c9c9] mx-4'/>
-				<div className='flex flex-row justify-between items-center my-[20px] mx-4'>
+				<div className='flex flex-row justify-between items-center my-auto mx-4'>
 					<button className="w-[50%] text-primary ease-in-out rounded-md bg-third text-[20px] py-[5px] duration-150
 										cursor-pointer font-poppins hover:bg-[#037f85] items-center" 
 							type="button">Add to chart</button>
 				</div>
 			</div>
-			<div className='flex flex-col rounded-md shadow-xl h-[100vh] w-[67%] bg-[#f5f6fa] items-center cursor-grabbing'>
-				<Canvas>
-					<OrbitControls enableZoom={false}/>
-					<ambientLight intensity={2} />
-					<directionalLight position={[-2, 8, 5]} intensity={2} />
-					<Suspense fallback={null}>
-						 <Bmwm3/>
-					</Suspense>
-				</Canvas>
+			<div className='flex flex-col rounded-md shadow-xl h-auto w-[67%] cursor-grabbing'>
+				<div className='flex h-[70vh] pt-[50px] w-full'>
+					<Canvas>
+						<OrbitControls enableZoom={false}/>
+						<ambientLight intensity={2} />
+						<directionalLight position={[-2, 8, 5]} intensity={2} />
+						<Suspense fallback={null}>
+							<Bmwm3/>
+						</Suspense>
+					</Canvas>
+				</div>
+				<div className='flex bg-[#f5f6fa] rounded-md rounded-t-2xl shadow-2xl'>
+					<hr className='border-[#c9c9c9] mx-4 mt-[20px]'/>
+					<div className='flex flex-col h-[200px] mx-4 mt-2'>
+						<div className='flex flex-row text-[24px] text-[#828282] items-center'>
+							<GoNote/>
+							<p className='ml-[5px]'>Description:</p>
+						</div>
+						<p className='text-[24px] font-regular text-[#828282]'>Good performance car</p>
+					</div>
+				</div>
 			</div>
 		</div>
 	)
