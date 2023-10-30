@@ -1,7 +1,11 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, Suspense} from 'react'
 import { useParams } from 'react-router-dom'
 import {GoNote} from 'react-icons/go'
+import { Bmwm3 } from '../components_3d/Bmwm3';
+
+import { Canvas } from '@react-three/fiber'
+import { OrbitControls } from '@react-three/drei'
 
 const VehicleDetailsPage = () => {
 
@@ -74,8 +78,15 @@ const VehicleDetailsPage = () => {
 							type="button">Add to chart</button>
 				</div>
 			</div>
-			<div className='flex flex-col rounded-md shadow-xl h-[100vh] w-[67%] bg-[#f5f6fa]'>
-
+			<div className='flex flex-col rounded-md shadow-xl h-[100vh] w-[67%] bg-[#f5f6fa] items-center cursor-grabbing'>
+				<Canvas>
+					<OrbitControls enableZoom={false}/>
+					<ambientLight intensity={2} />
+					<directionalLight position={[-2, 8, 5]} intensity={2} />
+					<Suspense fallback={null}>
+						 <Bmwm3/>
+					</Suspense>
+				</Canvas>
 			</div>
 		</div>
 	)
