@@ -85,7 +85,7 @@ const VehicleDetailsPage = () => {
 									<div className='w-[610px] mb-16 font-poppins font-medium text-[30px] text-secondary'>
 										<p>3D model of this vehicle is not available.</p>
 									</div>
-							  </Html>
+							  	</Html>
 							}
 						</Suspense>
 					</Canvas>
