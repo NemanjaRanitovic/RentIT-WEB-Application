@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom'
 import {GoNote} from 'react-icons/go'
 import { Bmwm3 } from '../components_3d/Bmwm3';
 
+import { Html } from '@react-three/drei';
 import { Canvas } from '@react-three/fiber'
 import { OrbitControls } from '@react-three/drei'
 
@@ -19,7 +20,6 @@ const VehicleDetailsPage = () => {
 
 	useEffect(() =>{
 		fetchVehiclel();
-		console.log(vehicle);
 	}, [vehicleId])
 
 	return (
@@ -70,14 +70,23 @@ const VehicleDetailsPage = () => {
 							type="button">Add to chart</button>
 				</div>
 			</div>
-			<div className='flex flex-col rounded-md shadow-xl h-auto w-[67%] cursor-grabbing'>
-				<div className='flex h-[70vh] pt-[50px] w-full'>
+			<div className='flex flex-col rounded-md shadow-xl h-auto w-[67%]'>
+				<div className='flex h-[70vh] pt-[50px] w-full cursor-grabbing'>
 					<Canvas>
 						<OrbitControls enableZoom={false}/>
 						<ambientLight intensity={2} />
 						<directionalLight position={[-2, 8, 5]} intensity={2} />
 						<Suspense fallback={null}>
-							<Bmwm3/>
+							{
+								{
+									'M3' : <Bmwm3 />,
+								}[vehicle?.Model] ||     
+								<Html center>
+									<div className='w-[610px] mb-16 font-poppins font-medium text-[30px] text-secondary'>
+										<p>3D model of this vehicle is not available.</p>
+									</div>
+							  </Html>
+							}
 						</Suspense>
 					</Canvas>
 				</div>
