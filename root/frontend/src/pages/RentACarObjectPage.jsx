@@ -27,6 +27,7 @@ const RentACarObjectPage = () => {
     const [Longitude, setLongitude] = useState();   
     const [isLoading, setLoading] = useState(true);
     const [objectVehicles, setObjectVehicles] = useState([]);
+    const [filteredVehicles, setFilteredVehicles] = useState([]);
 
     const icon = L.icon({ 
         iconRetinaUrl:iconRetina, 
